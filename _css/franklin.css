@@ -10,7 +10,9 @@ html {
 /* ==================================================================
     BASIC GRID FOR PROFILE PIC
 ================================================================== */
-
+body{
+    background: rgb(0, 0, 0);
+}
 .franklin-content .row {
   display: block;
 margin-left: 215px;
