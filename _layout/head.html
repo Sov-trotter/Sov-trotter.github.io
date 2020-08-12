@@ -1,4 +1,10 @@
 <!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.16.4 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,17 +12,9 @@
   {{if hasmath}} {{insert head_katex.html }}     {{end}}
   {{if hascode}} {{insert head_highlight.html }}   {{end}}
   {{insert style.html}}
-  {{isdef title}} <title>Arsh Sharma</title>  {{end}}
+  {{isdef title}} <title>{{fill title}}</title>  {{end}}
+  <!-- end custom head snippets -->
 </head>
-<body>
-{{insert sidebar.html}}
-<nav>
-  <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/assets/ResumeAug20_ArshSharma.pdf">Resume</a></li>
-      <li><a href="/pages/julia/index.html">Julia notes</a></li>
-      <!-- <li><a href="/pub/misc.html">Misc.</a></li> -->
-  </ul>
-</nav>
+{{insert body_layout.html}}
 
 <!-- Content appended here -->

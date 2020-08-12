@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>Arsh's Space</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+    </script>
+    <!-- For all browsers -->
+    <link rel="stylesheet" href="/css/minimal-mistakes.css">
+    <!--[if IE ]>
+      <style>
+        /* old IE unsupported flexbox fixes */
+        .greedy-nav .site-title {
+          padding-right: 3em;
+        }
+        .greedy-nav button {
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 100%;
+        }
+      </style>
+    <![endif]-->
+    <!-- start custom head snippets -->
+    <!-- insert favicons. use https://realfavicongenerator.net/ -->
+    <!-- end custom head snippets -->
+  </head>
+<body class="layout--splash">
+{{ insert masthead.html }}
+
+<div class="initial-content">
+  <div class="page__hero--overlay"
+    <div class="wrapper">
+      <h1 id="page-title" class="page__title" itemprop="headline">नमस्ते।</h1>
+      <p class="page__lead">The divine inside me, bows to the divine inside you.</p>
+    </div>
+  </div>
+
+  <div id="main" role="main">
+      <section class="page__content" itemprop="text">
+        <div class="feature__wrapper">
+          <div class="feature__item">
+            <div class="archive__item">
+              <div class="archive__item-teaser">
+                <img src="/assets/minimal-mistakes/mm-customizable-feature.png" alt="customizable" />
+              </div>
+              <div class="archive__item-body">
+                <h2 class="archive__item-title">GitHub</h2>
+                <div class="archive__item-excerpt">
+                  <p>Most of my work resides on GitHub</p>
+                </div>
+                <p><a href="/minimal-mistakes/docs/configuration/" class="btn btn--primary">Visit my GitHub</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="feature__item">
+            <div class="archive__item">
+              <div class="archive__item-teaser">
+                <img src="/assets/minimal-mistakes/mm-responsive-feature.png" alt="News" />
+              </div>
+              <div class="archive__item-body">
+                <h2 class="archive__item-title">News</h2>
+                <div class="archive__item-excerpt">
+                  <p>Get to know what I am currently working on</p>
+                </div>
+                <p><a href="/minimal-mistakes/docs/layouts/" class="btn btn--primary">Read News</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="feature__item">
+            <div class="archive__item">
+              <div class="archive__item-teaser">
+                <img src="/assets/minimal-mistakes/mm-free-feature.png" alt="100% free" />
+              </div>
+              <div class="archive__item-body">
+                <h2 class="archive__item-title">More About me</h2>
+                <div class="archive__item-excerpt">
+                  <p>My Interests, hobbies and everything outside professional life</p>
+                </div>
+                <p><a href="/minimal-mistakes/docs/license/" class="btn btn--primary">To infinty</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+
+    {{ insert foot.html }}
