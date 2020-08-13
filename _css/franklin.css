@@ -58,8 +58,8 @@ html {
 
 .franklin-content {
     position: relative;
-    padding-left: 12.5%;
-    padding-right: 12.5%;
+    /* padding-left: 12.5%;
+    padding-right: 12.5%; */
     line-height: 1.35em; }
 
 /* on wide screens, fix content width to a max value */
@@ -84,9 +84,11 @@ html {
 .franklin-content h1 { font-size: 24px; }
 .franklin-content h2 { font-size: 22px; }
 .franklin-content h3 { font-size: 20px; }
+.franklin-content p { font-size: 15px; }
 
 .franklin-content h1, h2, h3, h4, h5, h6 {
-    text-align: left; }
+    text-align: center; }
+
 
 .franklin-content h1 {
     padding-bottom: 0.5em;
@@ -100,6 +102,14 @@ html {
     margin-top: 2em;
     margin-bottom: 1em; }
 
+.franklin-content p {
+    padding-bottom: 0.1em;
+    margin-top: 3.5em;
+    margin-bottom: 1em;
+    text-align: left;
+    padding-left: 1.5em;
+     }
+    
 .franklin-content h1 a { color: inherit; }
 .franklin-content h1 a:hover {text-decoration: none;}
 .franklin-content h2 a { color: inherit; }

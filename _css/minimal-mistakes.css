@@ -4279,7 +4279,7 @@ a.reversefootnote:hover {
 }
 
 .sidebar {
-  clear: both
+  clear: both;
 }
 
 .sidebar::after {
@@ -4302,8 +4302,8 @@ a.reversefootnote:hover {
     float: left;
     width: calc(200px - 1em);
     opacity: 0.75;
-    -webkit-transition: opacity 0.2s ease-in-out;
-    transition: opacity 0.2s ease-in-out
+    /* -webkit-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out */
   }
 
   .sidebar:hover {
@@ -4312,7 +4312,8 @@ a.reversefootnote:hover {
 
   .sidebar.sticky {
     overflow-y: auto;
-    height: calc(100vh - 2em - 2em)
+    height: calc(100vh - 2em - 2em);
+    margin-top: -2em;
   }
 }
 
@@ -4333,7 +4334,7 @@ a.reversefootnote:hover {
 }
 
 .sidebar p,.sidebar li {
-  font-family: -apple-system,BlinkMacSystemFont,"Roboto","Segoe UI","Helvetica Neue","Lucida Grande",Arial,sans-serif;
+  font-family: sans-serif;
   font-size: .75em;
   line-height: 1.5
 }
@@ -4414,7 +4415,7 @@ a.reversefootnote:hover {
 }
 
 .author__avatar img {
-  max-width: 110px;
+  max-width: 193px;
   border-radius: 50%
 }
 
@@ -4459,8 +4460,9 @@ a.reversefootnote:hover {
 }
 
 .sidebar .author__name {
-  font-family: -apple-system,BlinkMacSystemFont,"Roboto","Segoe UI","Helvetica Neue","Lucida Grande",Arial,sans-serif;
-  font-size: 1em
+  font-family: sans-serif;
+  font-weight: lighter;
+  font-size: 1.5em
 }
 
 .author__bio {
@@ -4476,8 +4478,7 @@ a.reversefootnote:hover {
 
 .author__urls-wrapper {
   position: relative;
-  display: table-cell;
-  vertical-align: middle;
+  vertical-align: left;
   font-family: -apple-system,BlinkMacSystemFont,"Roboto","Segoe UI","Helvetica Neue","Lucida Grande",Arial,sans-serif;
   z-index: 10;
   position: relative;
@@ -4513,7 +4514,7 @@ a.reversefootnote:hover {
   list-style-type: none;
   border: 1px solid #f2f3f3;
   border-radius: 4px;
-  background: #fff;
+  background: rgb(0, 0, 0);
   z-index: -1;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
   cursor: default
