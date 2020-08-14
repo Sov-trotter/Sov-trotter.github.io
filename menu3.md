@@ -14,7 +14,11 @@
 * I am also pretty much active on the Julia Language Slack and Zulip 
 
 ## Work Address
+
+~~~<a style="color: #b2ce2a;font-size:15px;">
 Room No. 509, Himadri Hostel
-~~~<br>~~~NIT Hamirpur, Anu, Hamirpur
-~~~<br>~~~Himachal Pradesh, India
-~~~<br>~~~ZIP - 177005
+<br>NIT Hamirpur, Anu, Hamirpur
+<br>Himachal Pradesh, India
+<br>ZIP - 177005
+</a>
+~~~
