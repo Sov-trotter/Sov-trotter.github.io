@@ -522,13 +522,13 @@ body {
 }
 
 ::-moz-selection {
-  color: #fff;
-  background: #000
+  color: rgb(0, 0, 0);
+  background: rgb(255, 255, 255)
 }
 
 ::selection {
-  color: #fff;
-  background: #000
+  color: rgb(0, 0, 0);
+  background: rgb(255, 255, 255)
 }
 
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section {
@@ -656,7 +656,10 @@ h1 {
 }
 
 h2 {
-  font-size: 1.25em
+  font-size: 1.25em;
+  font-family: sans-serif;
+  font-weight: lighter;
+  
 }
 
 h3 {
