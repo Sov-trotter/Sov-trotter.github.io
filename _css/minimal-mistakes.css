@@ -4469,6 +4469,7 @@ a.reversefootnote:hover {
 }
 
 .author__bio {
+  text-align: left;
   margin: 0
 }
 
@@ -4529,6 +4530,7 @@ a.reversefootnote:hover {
 
 @media (min-width: 64em) {
   .author__urls {
+    text-align: left;
     display: block;
     position: relative;
     margin: 0;
