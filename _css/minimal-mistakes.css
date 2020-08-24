@@ -728,11 +728,11 @@ blockquote cite:before {
 }
 
 a:visited {
-  color: #5197ad
+  color: #49d6b3
 }
 
 a:hover {
-  color: #266477;
+  color: #d0fc0b;
   outline: 0
 }
 
@@ -859,7 +859,7 @@ nav li ul,nav li ol {
   margin-top: 0
 }
 
-b,i,strong,em,blockquote,p,q,span,figure,img,h1,h2,header,input,a,tr,td,form button,input[type="submit"],.btn,#goog-wm-sb,.highlight,.archive__item-teaser {
+b,i,strong,em,blockquote,p,q,span,figure,img,h1,h2,header,input,tr,td,form button,input[type="submit"],.btn,#goog-wm-sb,.highlight,.archive__item-teaser {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out
 }
