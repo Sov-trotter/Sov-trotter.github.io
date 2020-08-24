@@ -21,7 +21,14 @@ pre {
 }
 
 .franklin-content .hljs {
+    text-align: left;
     font-size: 90%;
+    color:rgb(243, 237, 237);
+    background:rgb(58, 56, 56);
+    display:inherit
+}
+.franklin-content .hljs-keyword{
+    color: red;
 }
 
 blockquote {

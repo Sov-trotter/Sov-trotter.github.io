@@ -728,11 +728,11 @@ blockquote cite:before {
 }
 
 a:visited {
-  color: #49d6b3
+  color: #14ec6e
 }
 
 a:hover {
-  color: #d0fc0b;
+  color: #49d6b3;
   outline: 0
 }
 
@@ -748,7 +748,7 @@ p>code,a>code,li>code,figcaption>code,td>code {
   padding-top: 0.1rem;
   padding-bottom: 0.1rem;
   font-size: 0.8em;
-  background: #fafafa;
+  background: #3b9728;
   border-radius: 4px
 }
 
