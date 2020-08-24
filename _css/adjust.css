@@ -23,14 +23,19 @@ pre {
 .franklin-content .hljs {
     text-align: left;
     font-size: 90%;
-    color:rgb(243, 237, 237);
-    background:rgb(58, 56, 56);
+    color:rgba(223, 208, 208, 0.87);
+    background:rgba(255, 255, 255, 0.041);
     display:inherit
 }
 .franklin-content .hljs-keyword{
     color: red;
 }
-
+.franklin-content .hljs-number{
+    color: rgb(46, 104, 212);
+}
+.franklin-content .hljs-built_in{
+    color: rgba(255, 230, 0, 0.849);
+}
 blockquote {
     font-size: 90%;
 }
