@@ -3,25 +3,54 @@
 <span class=hljs-keyword >const</span> MultiPoint = typeof(MultiPointMeta(y::<span class=hljs-built_in >Float64</span>[Point(<span class=hljs-number >0</span>)], m::<span class=hljs-built_in >Float64</span>, 
                                          boundingbox=Rect(<span class=hljs-number >0.0</span>, <span class=hljs-number >0.0</span>, <span class=hljs-number >2.0</span>, <span class=hljs-number >2.0</span>))) 
 
-<span class=hljs-comment ># and so on for other shapefile geometries</span></code></pre> <ul> <li><p>Geometry contructors:</p> </ul> <p>The construction of geometries is pretty simple as such and is handled well by <code>GeometryBasics</code> meta-geometry constructors, except for <code>Polygon</code> where we had to take an extra dependency to capture the case where it might have <a href="https://gist.github.com/jkrumbiegel/b82def0a3fb0a822963ec7f97278190c">multiple exterior rings</a>. <br>Thanks to <a href="https://github.com/greimel">Fabian Greimel</a>, who <a href="https://github.com/JuliaGeo/Shapefile.jl/pull/39#issuecomment-671595669">solved</a> it in no time&#33;</p> <ul> <li><p>Tabular Interface</p> </ul> <p>We put the collection of meta-geometries and the properties file <code>.dbf</code> into a <code>StructArray</code> for tablular representation. </p> <pre><code class="julia hljs"><span class=hljs-keyword >function</span> structarray(shp::Handle, dbf::DBFTables.Table)
+<span class=hljs-comment ># and so on for other shapefile geometries</span></code></pre> <ul> <li><p>Geometry contructors:</p> </ul> <p>The construction of geometries is pretty simple and is handled well by <code>GeometryBasics</code> meta-geometry constructors, except for <code>Polygon</code> where we had to take an extra dependency to capture the case where it might have <a href="https://gist.github.com/jkrumbiegel/b82def0a3fb0a822963ec7f97278190c">multiple exterior rings</a>. <br>Thanks to <a href="https://github.com/greimel">Fabian Greimel</a>, who <a href="https://github.com/JuliaGeo/Shapefile.jl/pull/39#issuecomment-671595669">solved</a> it in no time&#33;</p> <ul> <li><p>Tabular Interface</p> </ul> <p>We put the collection of meta-geometries and the properties file <code>.dbf</code> into a <code>StructArray</code> for tablular representation. </p> <pre><code class="julia hljs"><span class=hljs-keyword >function</span> structarray(shp::Handle, dbf::DBFTables.Table)
     dbf_cols = Tables.columntable(dbf)
     meta = collect(GB.meta(s) <span class=hljs-keyword >for</span> s <span class=hljs-keyword >in</span> shp.shapes)
     meta_cols = Tables.columntable(meta)
     <span class=hljs-keyword >return</span> StructArray(Geometry = collect(GB.metafree(i) <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> shp.shapes); meta_cols..., dbf_cols...)
-<span class=hljs-keyword >end</span></code></pre> <h2 id=a_hrefhttpsgithubcomvisrgeojsontablesjlpull3geojsontablesjl ><a href="#a_hrefhttpsgithubcomvisrgeojsontablesjlpull3geojsontablesjl"><a href="https://github.com/visr/GeoJSONTables.jl/pull/3">GeoJSONTables.jl</a>:</a></h2> <ul> <li><p>Methods</p> </ul> <p>Unlike <code>Shapefile.jl</code>, <code>GeoJSONTables.jl</code> has a semi-lazy <code>JSON</code> parsing. We have a direct <code>read&#40;&#41;</code> method that directly reads the data into a StructArray <code>Table</code>. The <code>read&#40;&#41;</code> method has three major parts:</p> <p> 1&#41; The <code>JSON3</code> parsing:</p> <pre><code class="julia hljs">fc = JSON3.read(jsonbytes)</code></pre>
+<span class=hljs-keyword >end</span></code></pre> <h2 id=a_hrefhttpsgithubcomvisrgeojsontablesjlpull3geojsontablesjl ><a href="#a_hrefhttpsgithubcomvisrgeojsontablesjlpull3geojsontablesjl"><a href="https://github.com/visr/GeoJSONTables.jl/pull/3">GeoJSONTables.jl</a>:</a></h2> <ul> <li><p>Feature</p> </ul> <p>The package defines it&#39;s own Feature type that binds a geometry with it&#39;s properties. We went for this method rather than directly using GeometryBasics metageometry constructors to be able to support the case of heterogeneous geomtries that has been discussed below.</p> <pre><code class="julia hljs"><span class=hljs-keyword >struct</span> Feature{T, Names, Types}
+    geometry::T
+    properties::NamedTuple{Names, Types}
+<span class=hljs-keyword >end</span></code></pre> <ul> <li><p>Methods</p> </ul> <p>Unlike <code>Shapefile.jl</code>, <code>GeoJSONTables.jl</code> has a semi-lazy <code>JSON</code> parsing. We have a single <code>read&#40;&#41;</code> method that directly reads the data into a StructArray <code>Table</code>. The <code>read&#40;&#41;</code> method has two major parts:</p> <p> 1&#41; The <code>JSON3</code> parsing:</p> <pre><code class="julia hljs">fc = JSON3.read(jsonbytes)</code></pre>
 <p>    2&#41; Populating and constructing GeometryBasics features :</p>
-<pre><code class="julia hljs">fc = JSON3.read(jsonbytes)</code></pre>
+<pre><code class="julia hljs">f = fc.features
+     <span class=hljs-keyword >for</span> f <span class=hljs-keyword >in</span> jsonfeatures 
+            geom = f.geometry
+            prop = f.properties
+            
+            <span class=hljs-comment ># only properties missing</span>
+            <span class=hljs-keyword >if</span> geom !== <span class=hljs-literal >nothing</span> &amp;&amp; prop === <span class=hljs-literal >nothing</span>
+                Feature(geometry(geom), miss(a))
+            
+            <span class=hljs-comment ># only geometry missing            </span>
+            <span class=hljs-keyword >elseif</span> geom === <span class=hljs-literal >nothing</span> &amp;&amp; prop !== <span class=hljs-literal >nothing</span>
+                Feature(missing, prop)
+            
+            <span class=hljs-comment ># none missing</span>
+            <span class=hljs-keyword >elseif</span> geom !== <span class=hljs-literal >nothing</span> &amp;&amp; prop !== <span class=hljs-literal >nothing</span>
+                Feature(geometry(geom), prop)
+            
+            <span class=hljs-comment ># both missing            </span>
+            <span class=hljs-keyword >elseif</span> geom === <span class=hljs-literal >nothing</span> &amp;&amp; prop === <span class=hljs-literal >nothing</span>
+                Feature(missing, miss(a))
+            <span class=hljs-keyword >end</span>
+        <span class=hljs-keyword >end</span></code></pre>
 <ul>
 <li><p>Missing values</p>
 
 </ul>
-<p>The package now support efficient handling of <code>missing</code> data. This happens right during the construction of geometries via the <code>GeoJSONTables.geometry</code> method that accepts a <code>JSON3.Object</code>.   </p>
+<p>The package now support efficient handling of <code>missing</code> data. This happens right during the construction of geometries via the <code>GeoJSONTables.geometry</code> method that accepts a <code>JSON3.Object</code>.  In the above example you can see a <code>miss&#40;&#41;</code> method, which covers all the cases where a <code>JSON3</code> output might reult in <code>nothing</code>.</p>
 <ul>
 <li><p>StructArrays</p>
 
+</ul>
+<p>This is the part that needed the most careful design considerations. One of the features of a <code>GeoJSON</code> format is that it allows for heterogeneous features i.e, there can be multiple geometry types in a single <code>GeoJSON</code> file. That challenge was getting out Tables interface to automatically widen to the appropriate types. eg: If there were a <code>Point</code> and a <code>Polygon</code> the type of our geometries column should automatically widen to <code>Any</code> and the Feature as <code>Feature&#123;Any, Names, Types&#125;</code>. This required defining <code>StructArrays.staticschema</code>, <code>StructArrays.createinstance</code> and <code>Base.getproperty</code> overloads to work well with our <code>Feature</code> type. This is well documented in <a href="https://github.com/JuliaArrays/StructArrays.jl#advanced-structures-with-non-standard-data-layout">StructArrays.jl</a>.</p>
+<ul>
 <li><p>Lower level interface</p>
 
 </ul>
+<p>For a faster, lower level interface and greater flexibility with the data, once can directly get a <code>JSON3.Dict</code> to avoid going throught long preocess of conversion to GeometryBasics geometries and then the Tables interface. </p>
+<pre><code class="julia hljs">GeoJSONTables.JSON3.read(jsonbytes)</code></pre>
 </div>
 
       </div> 
