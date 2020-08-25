@@ -81,7 +81,7 @@ This required defining `StructArrays.staticschema`, `StructArrays.createinstance
 This is well documented in ~~~<a href="https://github.com/JuliaArrays/StructArrays.jl#advanced-structures-with-non-standard-data-layout">StructArrays.jl</a>~~~.
 
 * Lower level interface
-For a faster, lower level interface and greater flexibility with the data, once can directly get a `JSON3.Dict` to avoid going throught long preocess of conversion to GeometryBasics geometries and then the Tables interface. 
+For a faster, lower level interface and greater flexibility with the data, once can directly get a `JSON3.Dict` to avoid the conversion to GeometryBasics geometries and then the Tables interface. Though it is not recommended if it is desired to use the data fruther for processing, plotting or performing spatial operations.
 ```julia
 GeoJSONTables.JSON3.read(jsonbytes)
 ```
