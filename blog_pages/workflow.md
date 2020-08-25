@@ -75,7 +75,7 @@ The package now supports efficient handling of `missing` data. This happens righ
 In the above example you can see a `miss()` method, which captures all the cases where a `JSON3` output might reult in `nothing`.
 
 * StructArrays and Tabular interface
-This part that needed the most careful design. One of the features of a `GeoJSON` format is that it allows for heterogeneous features i.e, there can be multiple geometry types in a single `GeoJSON` file. The challenge was getting the Tables interface
+This is the part that needed a careful design. One of the features of a `GeoJSON` format is that it allows for heterogeneous features i.e, there can be multiple geometry types in a single `GeoJSON` file. The challenge was getting the Tables interface
 to automatically widen to the appropriate types in case of heterogeneous features/geometries. eg: If a Feature has a `Point` type and a `Polygon` type, the type of our geometries column should automatically widen to `Any` and the Feature as `Feature{Any, Names, Types}`.
 This required defining `StructArrays.staticschema`, `StructArrays.createinstance` and `Base.getproperty` overloads to work well with our `Feature` type.
 The method is well documented in ~~~<a href="https://github.com/JuliaArrays/StructArrays.jl#advanced-structures-with-non-standard-data-layout">StructArrays.jl</a>~~~.
