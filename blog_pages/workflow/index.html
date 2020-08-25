@@ -49,7 +49,7 @@
 <li><p>Lower level interface</p>
 
 </ul>
-<p>For a faster, lower level interface and greater flexibility with the data, once can directly get a <code>JSON3.Dict</code> to avoid going throught long preocess of conversion to GeometryBasics geometries and then the Tables interface. </p>
+<p>For a faster, lower level interface and greater flexibility with the data, once can directly get a <code>JSON3.Dict</code> to avoid the conversion to GeometryBasics geometries and then the Tables interface. Though it is not recommended if it is desired to use the data fruther for processing, plotting or performing spatial operations.</p>
 <pre><code class="julia hljs">GeoJSONTables.JSON3.read(jsonbytes)</code></pre>
 </div>
 
