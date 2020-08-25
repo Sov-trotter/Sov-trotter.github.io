@@ -36,7 +36,7 @@ end
 ```
 
 * Methods
-Unlike `Shapefile.jl`, `GeoJSONTables.jl` has a semi-lazy `JSON` parsing. We have a single `read()` method that directly reads the data into a StructArray `Table`.
+Unlike `Shapefile.jl`, `GeoJSONTables.jl` follows a semi-lazy `JSON` parsing. A `read()` method directly reads the raw jsonbytes into a StructArray `Table`.
 The `read()` method has two major parts:
         
         1) The `JSON3` parsing:
@@ -71,17 +71,17 @@ The `read()` method has two major parts:
 ``` 
 
 * Missing values
-The package now support efficient handling of `missing` data. This happens right during the construction of geometries via the `GeoJSONTables.geometry` method that accepts a `JSON3.Object`. 
-In the above example you can see a `miss()` method, which covers all the cases where a `JSON3` output might reult in `nothing`.
+The package now supports efficient handling of `missing` data. This happens right during the construction of geometries(`GeoJSONTables.geometry` method that accepts a `JSON3.Object`). 
+In the above example you can see a `miss()` method, which captures all the cases where a `JSON3` output might reult in `nothing`.
 
-* StructArrays
-This is the part that needed the most careful design considerations. One of the features of a `GeoJSON` format is that it allows for heterogeneous features i.e, there can be multiple geometry types in a single `GeoJSON` file. That challenge was getting out Tables interface
-to automatically widen to the appropriate types. eg: If there were a `Point` and a `Polygon` the type of our geometries column should automatically widen to `Any` and the Feature as `Feature{Any, Names, Types}`.
+* StructArrays and Tabular interface
+This part that needed the most careful design. One of the features of a `GeoJSON` format is that it allows for heterogeneous features i.e, there can be multiple geometry types in a single `GeoJSON` file. The challenge was getting the Tables interface
+to automatically widen to the appropriate types in case of heterogeneous features/geometries. eg: If a Feature has a `Point` type and a `Polygon` type, the type of our geometries column should automatically widen to `Any` and the Feature as `Feature{Any, Names, Types}`.
 This required defining `StructArrays.staticschema`, `StructArrays.createinstance` and `Base.getproperty` overloads to work well with our `Feature` type.
-This is well documented in ~~~<a href="https://github.com/JuliaArrays/StructArrays.jl#advanced-structures-with-non-standard-data-layout">StructArrays.jl</a>~~~.
+The method is well documented in ~~~<a href="https://github.com/JuliaArrays/StructArrays.jl#advanced-structures-with-non-standard-data-layout">StructArrays.jl</a>~~~.
 
 * Lower level interface
-For a faster, lower level interface and greater flexibility with the data, once can directly get a `JSON3.Dict` to avoid the conversion to GeometryBasics geometries and then the Tables interface. Though it is not recommended if it is desired to use the data fruther for processing, plotting or performing spatial operations.
+For a faster, lower level interface and greater flexibility with the data, one can directly have a `JSON3.Dict` to avoid the process of  conversion to GeometryBasics geometries and the Tables interface. Though it is not recommended if one wishes to use the data further for processing, plotting or performing spatial operations.
 ```julia
 GeoJSONTables.JSON3.read(jsonbytes)
 ```
