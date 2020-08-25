@@ -13,7 +13,7 @@ const MultiPoint = typeof(MultiPointMeta(y::Float64[Point(0)], m::Float64,
 ```
 
 * Geometry contructors:
-The construction of geometries is pretty simple as such and is handled well by `GeometryBasics` meta-geometry constructors, except for `Polygon` where we had to take an extra dependency to capture the case where it might have ~~~<a href="https://gist.github.com/jkrumbiegel/b82def0a3fb0a822963ec7f97278190c">multiple exterior rings</a>~~~. ~~~<br>~~~Thanks to ~~~<a href="https://github.com/greimel">Fabian Greimel</a>~~~, who ~~~<a href="https://github.com/JuliaGeo/Shapefile.jl/pull/39#issuecomment-671595669">solved</a>~~~ it in no time!
+The construction of geometries is pretty simple and is handled well by `GeometryBasics` meta-geometry constructors, except for `Polygon` where we had to take an extra dependency to capture the case where it might have ~~~<a href="https://gist.github.com/jkrumbiegel/b82def0a3fb0a822963ec7f97278190c">multiple exterior rings</a>~~~. ~~~<br>~~~Thanks to ~~~<a href="https://github.com/greimel">Fabian Greimel</a>~~~, who ~~~<a href="https://github.com/JuliaGeo/Shapefile.jl/pull/39#issuecomment-671595669">solved</a>~~~ it in no time!
 
 * Tabular Interface
 We put the collection of meta-geometries and the properties file `.dbf` into a `StructArray` for tablular representation.   
@@ -26,9 +26,18 @@ function structarray(shp::Handle, dbf::DBFTables.Table)
 end
 ```
 ## ~~~<a href="https://github.com/visr/GeoJSONTables.jl/pull/3">GeoJSONTables.jl</a>~~~:
+* Feature
+The package defines it's own Feature type that binds a geometry with it's properties. We went for this method rather than directly using GeometryBasics metageometry constructors to be able to support the case of heterogeneous geomtries that has been discussed below.
+```julia
+struct Feature{T, Names, Types}
+    geometry::T
+    properties::NamedTuple{Names, Types}
+end
+```
+
 * Methods
-Unlike `Shapefile.jl`, `GeoJSONTables.jl` has a semi-lazy `JSON` parsing. We have a direct `read()` method that directly reads the data into a StructArray `Table`.
-The `read()` method has three major parts:
+Unlike `Shapefile.jl`, `GeoJSONTables.jl` has a semi-lazy `JSON` parsing. We have a single `read()` method that directly reads the data into a StructArray `Table`.
+The `read()` method has two major parts:
         
         1) The `JSON3` parsing:
 ```julia
@@ -37,12 +46,42 @@ The `read()` method has three major parts:
         2) Populating and constructing GeometryBasics features :
 
 ```julia
-    fc = JSON3.read(jsonbytes)
+    f = fc.features
+     for f in jsonfeatures 
+            geom = f.geometry
+            prop = f.properties
+            
+            # only properties missing
+            if geom !== nothing && prop === nothing
+                Feature(geometry(geom), miss(a))
+            
+            # only geometry missing            
+            elseif geom === nothing && prop !== nothing
+                Feature(missing, prop)
+            
+            # none missing
+            elseif geom !== nothing && prop !== nothing
+                Feature(geometry(geom), prop)
+            
+            # both missing            
+            elseif geom === nothing && prop === nothing
+                Feature(missing, miss(a))
+            end
+        end
 ``` 
 
 * Missing values
-The package now support efficient handling of `missing` data. This happens right during the construction of geometries via the `GeoJSONTables.geometry` method that accepts a `JSON3.Object`.   
+The package now support efficient handling of `missing` data. This happens right during the construction of geometries via the `GeoJSONTables.geometry` method that accepts a `JSON3.Object`. 
+In the above example you can see a `miss()` method, which covers all the cases where a `JSON3` output might reult in `nothing`.
 
 * StructArrays
+This is the part that needed the most careful design considerations. One of the features of a `GeoJSON` format is that it allows for heterogeneous features i.e, there can be multiple geometry types in a single `GeoJSON` file. That challenge was getting out Tables interface
+to automatically widen to the appropriate types. eg: If there were a `Point` and a `Polygon` the type of our geometries column should automatically widen to `Any` and the Feature as `Feature{Any, Names, Types}`.
+This required defining `StructArrays.staticschema`, `StructArrays.createinstance` and `Base.getproperty` overloads to work well with our `Feature` type.
+This is well documented in ~~~<a href="https://github.com/JuliaArrays/StructArrays.jl#advanced-structures-with-non-standard-data-layout">StructArrays.jl</a>~~~.
 
 * Lower level interface
+For a faster, lower level interface and greater flexibility with the data, once can directly get a `JSON3.Dict` to avoid going throught long preocess of conversion to GeometryBasics geometries and then the Tables interface. 
+```julia
+GeoJSONTables.JSON3.read(jsonbytes)
+```
