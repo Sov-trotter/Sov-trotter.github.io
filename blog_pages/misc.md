@@ -13,7 +13,7 @@ Apart from the two main PR's mentioned in the ~~~<a href="/blog_pages/workflow">
 * [WIP] ~~~<a href="https://github.com/JuliaData/Tables.jl/">Tables.jl</a>~~~ Interface for `ArchGDAL` feature layers ~~~<a href="https://github.com/yeesian/ArchGDAL.jl/pull/118">#118</a>~~~ (minor ~~~<a href="https://github.com/yeesian/ArchGDALDatasets/pull/1">#1</a>~~~)
 -----------
 ## AbstractPlotting.jl(Makie ecosystem)
-* Add overloads for `convert_arguments` method to support plotting of GeometryBasics ~~~<a href="https://github.com/JuliaPlots/AbstractPlotting.jl/pull/479">LineString / Array{LineString}/ MultiLineString</a>~~~ and ~~~<a href="https://github.com/JuliaPlots/AbstractPlotting.jl/pull/486">Polygon / Array{Polygon}</a>~~~.
+* Add overloads for `convert_arguments` method to support plotting of GeometryBasics `LineString` / `Array{LineString}`/ `MultiLineString` ~~~<a href="https://github.com/JuliaPlots/AbstractPlotting.jl/pull/479">#479</a>~~~ and `Polygon` / `Array{Polygon}` ~~~<a href="https://github.com/JuliaPlots/AbstractPlotting.jl/pull/486">#486</a>~~~.
 * I was hacking around my old ~~~<a href="https://www.amd.com/en/products/graphics/radeon-530">AMD GPU</a>~~~ in linux and acutally found way to invoke GPU's with "not so good" linux drivers to render `Makie` plots, right from bash terminal which made it's way into the Makie docs ~~~<a href="https://github.com/JuliaPlots/MakieGallery.jl/pull/295">#295</a>~~~
 -----------
 ## DataFrames.jl
