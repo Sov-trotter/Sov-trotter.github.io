@@ -1,7 +1,7 @@
 @def title = "Workflow"
 
 # GeometryBasics support
-## ~~~<a href="https://github.com/JuliaGeo/Shapefile.jl/pull/39">Shapefile.jl</a>~~~:
+## [WIP] ~~~<a href="https://github.com/JuliaGeo/Shapefile.jl/pull/39">Shapefile.jl</a>~~~:
 * `GeoInterface` geometry types are replaced by the meta-geometry types from `GeometryBasics`
 ```julia
 const Point = Point{2, Float64}
@@ -25,7 +25,7 @@ function structarray(shp::Handle, dbf::DBFTables.Table)
     return StructArray(Geometry = collect(GB.metafree(i) for i in shp.shapes); meta_cols..., dbf_cols...)
 end
 ```
-## ~~~<a href="https://github.com/visr/GeoJSONTables.jl/pull/3">GeoJSONTables.jl</a>~~~:
+## [WIP]~~~<a href="https://github.com/visr/GeoJSONTables.jl/pull/3">GeoJSONTables.jl</a>~~~:
 * Feature
 The package defines it's own Feature type that binds a geometry with it's properties. We went for this method rather than directly using GeometryBasics metageometry constructors to be able to support the case of heterogeneous geomtries that has been discussed below.
 ```julia
