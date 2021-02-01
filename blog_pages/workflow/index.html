@@ -10,7 +10,7 @@
     <span class=hljs-keyword >return</span> StructArray(Geometry = collect(GB.metafree(i) <span class=hljs-keyword >for</span> i <span class=hljs-keyword >in</span> shp.shapes); meta_cols..., dbf_cols...)
 <span class=hljs-keyword >end</span></code></pre> <h2 id=wipa_hrefhttpsgithubcomvisrgeojsontablesjlpull3geojsontablesjl ><a href="#wipa_hrefhttpsgithubcomvisrgeojsontablesjlpull3geojsontablesjl">&#91;WIP&#93;<a href="https://github.com/visr/GeoJSONTables.jl/pull/3">GeoJSONTables.jl</a>:</a></h2> <ul> <li><p>Feature</p> </ul> <p>The package defines it&#39;s own Feature type that binds a geometry with it&#39;s properties. We went for this method rather than directly using GeometryBasics metageometry constructors to be able to support the case of heterogeneous geomtries that has been discussed below.</p> <pre><code class="julia hljs"><span class=hljs-keyword >struct</span> Feature{T, Names, Types}
     geometry::T
-    properties::NamedTuple{Names, Types}
+    properties::<span class=hljs-built_in >NamedTuple</span>{Names, Types}
 <span class=hljs-keyword >end</span></code></pre> <ul> <li><p>Methods</p> </ul> <p>Unlike <code>Shapefile.jl</code>, <code>GeoJSONTables.jl</code> follows a semi-lazy <code>JSON</code> parsing. A <code>read&#40;&#41;</code> method directly reads the raw jsonbytes into a StructArray <code>Table</code>. The <code>read&#40;&#41;</code> method has two major parts:</p> <p> 1&#41; The <code>JSON3</code> parsing:</p> <pre><code class="julia hljs">fc = JSON3.read(jsonbytes)</code></pre>
 <p>    2&#41; Populating and constructing GeometryBasics features :</p>
 <pre><code class="julia hljs">f = fc.features
@@ -24,7 +24,7 @@
             
             <span class=hljs-comment ># only geometry missing            </span>
             <span class=hljs-keyword >elseif</span> geom === <span class=hljs-literal >nothing</span> &amp;&amp; prop !== <span class=hljs-literal >nothing</span>
-                Feature(missing, prop)
+                Feature(<span class=hljs-literal >missing</span>, prop)
             
             <span class=hljs-comment ># none missing</span>
             <span class=hljs-keyword >elseif</span> geom !== <span class=hljs-literal >nothing</span> &amp;&amp; prop !== <span class=hljs-literal >nothing</span>
@@ -32,7 +32,7 @@
             
             <span class=hljs-comment ># both missing            </span>
             <span class=hljs-keyword >elseif</span> geom === <span class=hljs-literal >nothing</span> &amp;&amp; prop === <span class=hljs-literal >nothing</span>
-                Feature(missing, miss(a))
+                Feature(<span class=hljs-literal >missing</span>, miss(a))
             <span class=hljs-keyword >end</span>
         <span class=hljs-keyword >end</span></code></pre>
 <ul>
