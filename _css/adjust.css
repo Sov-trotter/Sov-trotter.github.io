@@ -23,12 +23,12 @@ pre {
 .franklin-content .hljs {
     text-align: left;
     font-size: 90%;
-    color:rgba(223, 208, 208, 0.87);
+    color:rgba(237, 230, 230, 0.87);
     background:rgba(255, 255, 255, 0.041);
     display:inherit
 }
 .franklin-content .hljs-keyword{
-    color: red;
+    color: rgba(94, 220, 41, 0.87);
 }
 .franklin-content .hljs-number{
     color: rgb(46, 104, 212);

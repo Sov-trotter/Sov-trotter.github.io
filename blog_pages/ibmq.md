@@ -5,8 +5,8 @@
 ### पूर्णस्य पूर्णमादाय पूर्णमेवावशिष्यते ॥
 ### ॐ शान्तिः शान्तिः शान्तिः ॥
 
-Infinity gives ∞, adding ∞ gives ∞ and substraction of ∞ is also ∞. Let the peace live.
-
+###### _Infinity gives ∞, adding ∞ gives ∞ and substraction of ∞ is also ∞. Let the peace live._
+---
 The ~~~<a href="https://github.com/Sov-trotter/IBMQJulia.jl">IBMQJulia.jl</a>~~~ package came out of the desire to support the  ~~~<a href="https://quantum-computing.ibm.com/">IBM Quantum Experience(IBMQ)</a>~~~ interface in native Julia for the ~~~<a href="https://github.com/QuantumBFS">Yao/QuantumBFS</a>~~~ ecosystem. The IBMQ interface allows researchers to run quatum circuits on the quantum hardware built by IBM realtime via cloud. 
 
 While Julia's own quantum circuit simulator, ~~~<a href="https://github.com/QuantumBFS/Yao.jl">Yao.jl</a>~~~ has grown in all directions, it was needed to support running larger Yao based circuits on real hardware. IBMQ only supports two ways of running circuits, i.e. the circuit composer on IBMQ and via a REST API. We made use of the JuliaWeb framework, viz. ~~~<a href="https://github.com/JuliaWeb/HTTP.jl">HTTP.jl</a>~~~ for API requests and ~~~<a href="https://github.com/JuliaIO/JSON.jl">JSON.jl</a>~~~ for parsing the data. 
@@ -67,7 +67,7 @@ There's a bunch of stuff that happens in here. Let's take a closer look. First t
 
 Yao stores it's circuits in the form of an AST(Abstract Syntax Tree), ~~~<br>~~~viz. `Yao Quantum Block Intermediate Representation(QBIR)`
 
-~~~<img src="https://docs.yaoquantum.org/dev/assets/images/YaoFramework.png" style="width:700px;height:450px;">~~~
+~~~<img src="https://docs.yaoquantum.org/dev/assets/images/YaoFramework.png">~~~
 
 while the IBMQ hardware runs on `Open Quantum Assembly Language(OpenQASM)`. Also the IBMQ server accepts a special JSON object viz. the `QObj` to hold the circuit information in the JSON request. 
 What we needed here was a conversion method from Yao QBIR to QObj, for which we implemented this ~~~<a href="https://arxiv.org/abs/1809.03452">paper</a>~~~, that specifies the Oobj requirements.

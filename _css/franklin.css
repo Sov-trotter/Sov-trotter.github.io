@@ -103,6 +103,14 @@ html {
     margin-bottom: 0em; 
     text-align: left;}
 
+.franklin-content h6 {
+    padding-bottom: 0.3em;
+    /* border-bottom: 1px solid lightgrey; */
+    margin-top: 2em;
+    margin-bottom: 0em; 
+    text-align: center;
+    font-weight: normal;}
+    
 .franklin-content p {
     padding-bottom: 0.1em;
     margin-top: 2.5em;
@@ -193,10 +201,11 @@ html {
 ================================================================== */
 
 .franklin-content img {
-    width: 70%;
+    /* width: 70%; */
     text-align: center;
-    padding-left: 10%; }
-
+    background-color: white;
+    /* padding-left: 10%;  */
+}
 .franklin-content .img-small img {
     width: 50%;
     text-align: center;
