@@ -63,8 +63,8 @@ And the output came out someting like:
 .
 
 
-I was almost about to give up when one of my amazing mentors ~~~<a href="https://github.com/TheCedarPrince">Jacob Zelko</a>~~~ stepped in with his genius and suggested an altogether new approach!
+I was almost about to give up when one of my amazing mentors ~~~<a href="https://github.com/TheCedarPrince">Jacob Zelko</a>~~~ stepped in with his genius and suggested an altogether new way of looking at layers!
 
 ~~~<img src=https://media1.tenor.com/images/57952baad34378449b065261352889e3/tenor.gif?itemid=20676729>~~~
 
-Cont....
+Continued.....
