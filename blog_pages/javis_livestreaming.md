@@ -32,6 +32,9 @@ render(vid, streamconfig=stream_conf)
 ```
 
 Local streams can be read by tools like ~~~<a href="https://obsproject.com/">OBS Studio</a>~~~, ~~~<a href="https://ffmpeg.org/ffplay.html">ffplay</a>~~~, ~~~<a href="https://www.videolan.org/">VLC</a>~~~ or any similar software.
+
 ~~~<img src="/assets/obs.png">~~~
+###### _Setting up OBS to receive streams from Javis._
+
 
 Learn more about livestreaming in Javis ~~~<a href="https://wikunia.github.io/Javis.jl/dev/workflows/#Tools-for-Viewing-Live-Streams">here</a>~~~.

@@ -10,10 +10,11 @@
 # A Harmonious code-creativity relationship
 ~~~<img src="http://kmit.in/emagazine/wp-content/uploads/2016/07/banner-gsoc2016_2.png">~~~
 
-A series of blog posts covering my journey this summer with two amazing mentors, ~~~<a href="https://github.com/TheCedarPrince">Jacob Zelko</a>~~~ and ~~~<a href="https://github.com/Wikunia">Ole Kröger</a>~~~ on an amazing software ~~~<a href="https://github.com/Wikunia/Javis.jl">Javis.jl</a>~~~ for the ~~~<a href="https://discourse.julialang.org/">Julia Language Community</a>~~~ under the Google Summer of Code program.
+A series of blog posts covering my journey this summer with two amazing mentors, ~~~<a href="https://github.com/TheCedarPrince">Jacob Zelko</a>~~~ and ~~~<a href="https://github.com/Wikunia">Ole Kröger</a>~~~ on an amazing software ~~~<a href="https://github.com/Wikunia/Javis.jl">Javis.jl</a>~~~ for the ~~~<a href="https://discourse.julialang.org/">Julia Language Community</a>~~~.
 
 * ~~~<a href="/blog_pages/javis_livestreaming">Livestreaming</a>~~~
-* ~~~<a href="/blog_pages/javis-layers">Layers</a>~~~
+* ~~~<a href="/blog_pages/javis_layers-1">Layers - First Steps</a>~~~
+* ~~~<a href="/blog_pages/javis_layers-2">Layers - Let's Draw it!</a>~~~
 
 # A Probabilistic Encounter
 
