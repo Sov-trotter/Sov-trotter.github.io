@@ -1,0 +1,57 @@
+<!doctype html> <!-- Minimal Mistakes Jekyll Theme 4.16.4 by Michael Rose Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes Free for personal and commercial use under the MIT license https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE --> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/minimal-mistakes.css"> <link rel=stylesheet  href="/css/adjust.css"> <!--[if IE ]> <style> /* old IE unsupported flexbox fixes */ .greedy-nav .site-title { padding-right: 3em; } .greedy-nav button { position: absolute; top: 0; right: 0; height: 100%; } </style> <![endif]--> <title>Layers in Javis</title> <body class=layout--single > <div class=masthead > <div class=masthead__inner-wrap > <div class=masthead__menu > <nav id=site-nav  class=greedy-nav > <a class=site-title  href="/">Arsh Sharma</a> <a class=site-subtitle  href="/">Receptive to code, klingon & 8bit music</a> <ul class=visible-links > <li class=masthead__menu-item ><a href="/assets/Arsh Sharma Resume.pdf" >Resume</a> <li class=masthead__menu-item ><a href="/about/" >About Me</a> <li class=masthead__menu-item ><a href="/blog/" >Blog</a> <li class=masthead__menu-item ><a href="/menu3/">Contact</a> </ul> <button class="greedy-nav__toggle hidden" type=button > <span class=visually-hidden >Toggle menu</span> <div class=navicon ></div> </button> <ul class="hidden-links hidden"></ul> </nav> </div> </div> </div> <div class=initial-content > <div id=main  role=main > <div class="sidebar sticky"> <div itemscope itemtype="https://schema.org/Person"> <div class=author__avatar > <img src="/assets/minimal-mistakes/zenobia.png" alt="Arsh Sharma" itemprop=image > </div> <div class=author__content > <h3 class=author__name  itemprop=name >Arsh Sharma</h3> <p class=author__bio  itemprop=description >Probably not a commoner.</p> </div> <div class=author__urls-wrapper > <button class="btn btn--inverse">Follow</button> <ul class="author__urls social-icons"> <li itemprop=homeLocation  itemscope itemtype="https://schema.org/Place"> <i class="fas fa-fw fa-map-marker-alt" aria-hidden=true ></i> <span itemprop=name >Hamirpur, India</span> <li><a href="https://twitter.com/Sov_trotter" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden=true ></i>Twitter</a> <li><a href="https://github.com/Sov-trotter" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden=true ></i>GitHub</a> <li><a href="https://www.linkedin.com/in/sov-trotter/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden=true ></i>LinkedIn</a> </ul> </div> </div> </div> <div class=franklin-content ><h3 id="सदव_दवतव_दरशयम"><a href="#सदव_दवतव_दरशयम" class=header-anchor >सदैव देवत्वं दर्शयामि । </a></h3> <h6 id=i_always_manifest_divinity ><a href="#i_always_manifest_divinity" class=header-anchor ><em>I always manifest divinity.</em></a></h6> <hr /> <p>Most standard tools for vector graphics/animations&#40;eg: <a href="https://inkscape.org/">Inkscape</a>, <a href="https://www.gimp.org/GIMP">GIMP</a> etc.&#41; follow a layer based approach towards the entire canvas, where different layers are stacked on top of each other&#40;or together in a list&#41;. </p> <img src="https://sozi.baierouge.fr/images/tutorial-layers/sozi-layers-tutorial-screenshot-02.png"> <p><em><pre><a href="https://sozi.baierouge.fr/pages/tutorial-layers.html">Layers in Inkscape</a></pre></em></p>
+<p>A similar feature in Javis could add new capablities to animation with Javis. </p>
+<p>But let&#39;s pause and ponder over what features we wish, a Javis Layer must have.</p>
+<ul>
+<li><p>Layers can define their own  properties such as color, size, frame range etc</p>
+
+<li><p>Properties will be local for a layer and apply to all the objects in that layer.</p>
+
+<li><p>Actions defined over a particular object automatically become a part of the layer based on the frame range.</p>
+
+<li><p>A layer can constitute multiple objects and sub-layers &#40;as children&#41; which inherit the  properties of the parent layer. Hence the canvas tends to have a “tree-like” structure. </p>
+
+</ul>
+<img src="https://user-images.githubusercontent.com/43717431/120858679-c1b16600-c5a0-11eb-8198-3e9575c65503.png">
+<p>There are two main challenges to be tackled before layers in Javis becomes a reality:</p>
+<ul>
+<li><p>Every layer should be independent of other layer in the canvas.</p>
+
+</ul>
+<p><img src="https://wikunia.github.io/Javis.jl/dev/assets/showcase.gif"> This would require every layer to have a separate context&#40;position, size, settings etc.&#41;</p>
+<ul>
+<li><p>One ahould be able to apply actions to each layer. </p>
+
+</ul>
+<p>A simple example is if I want to show the animation of a planet and then move it to some place like the bottom of the canvas. <img src="https://github.com/Sov-trotter/Javis-viz/blob/main/doc-files/layer_intial.gif?raw=true"></p>
+<p>This needs some out-of-the-box thinking since actions on a layer should be applied to the layer as a whole and not it&#39;s constituent objects.</p>
+<p>The above challenges become more interesting due to the fact that Javis is based on <a href="https://github.com/JuliaGraphics/Luxor.jl">Luxor</a> which is itself based on <a href="https://www.cairographics.org/">Cairo</a> which don&#39;t have such context in-built.</p>
+<p>Luxor does have some comparable contexts eg: A <code>Drawing</code> and a <code>@layer</code>. While a <code>Drawing</code> is a complete canvas, <code>@layer</code> seems like the obvious way to go and this holds well al long as each layer is a <code>AbstractObject</code>. <a href="https://github.com/Wikunia/Javis.jl/pull/341">#341</a> explores this idea. .</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>After a few trials we ran into a problem with this direct implemenation: While we did have a tree-like structure, we realized that it was applying layer&#39;s actions on individual objects rather than the entire layer. </p>
+<p>And the output came out someting like:</p>
+<img src="https://github.com/Sov-trotter/Javis-viz/blob/main/doc-files/layer_test.gif?raw=true">
+<p>.</p>
+<p>.</p>
+<p>:&#40;</p>
+<p>.</p>
+<p>I was almost about to give up when one of my amazing mentors <a href="https://github.com/TheCedarPrince">Jacob Zelko</a> stepped in with his genius and suggested an altogether new approach&#33;</p>
+<img src=https://media1.tenor.com/images/57952baad34378449b065261352889e3/tenor.gif?itemid=20676729>
+<p>Cont....</p>
+</div>
+
+      </div> 
+    </div>   
+
+    <div class=page__footer >
+      <footer>
+        
+        
+        <div class=page__footer-copyright >&copy; Arsh Sharma. Powered by <a href="https://github.com/tlienart/Franklin.jl">Franklin</a> &amp; <a href="https://julialang.org" rel=nofollow >The Julia Language</a>.</div>
+      </footer>
+    </div>
+
+    <script src="/libs/minimal-mistakes/main.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin=anonymous ></script>

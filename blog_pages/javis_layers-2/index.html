@@ -1,0 +1,66 @@
+<!doctype html> <!-- Minimal Mistakes Jekyll Theme 4.16.4 by Michael Rose Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes Free for personal and commercial use under the MIT license https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE --> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/libs/highlight/github.min.css"> <link rel=stylesheet  href="/css/franklin.css"> <link rel=stylesheet  href="/css/minimal-mistakes.css"> <link rel=stylesheet  href="/css/adjust.css"> <!--[if IE ]> <style> /* old IE unsupported flexbox fixes */ .greedy-nav .site-title { padding-right: 3em; } .greedy-nav button { position: absolute; top: 0; right: 0; height: 100%; } </style> <![endif]--> <title>Layers-v2</title> <body class=layout--single > <div class=masthead > <div class=masthead__inner-wrap > <div class=masthead__menu > <nav id=site-nav  class=greedy-nav > <a class=site-title  href="/">Arsh Sharma</a> <a class=site-subtitle  href="/">Receptive to code, klingon & 8bit music</a> <ul class=visible-links > <li class=masthead__menu-item ><a href="/assets/Arsh Sharma Resume.pdf" >Resume</a> <li class=masthead__menu-item ><a href="/about/" >About Me</a> <li class=masthead__menu-item ><a href="/blog/" >Blog</a> <li class=masthead__menu-item ><a href="/menu3/">Contact</a> </ul> <button class="greedy-nav__toggle hidden" type=button > <span class=visually-hidden >Toggle menu</span> <div class=navicon ></div> </button> <ul class="hidden-links hidden"></ul> </nav> </div> </div> </div> <div class=initial-content > <div id=main  role=main > <div class="sidebar sticky"> <div itemscope itemtype="https://schema.org/Person"> <div class=author__avatar > <img src="/assets/minimal-mistakes/zenobia.png" alt="Arsh Sharma" itemprop=image > </div> <div class=author__content > <h3 class=author__name  itemprop=name >Arsh Sharma</h3> <p class=author__bio  itemprop=description >Probably not a commoner.</p> </div> <div class=author__urls-wrapper > <button class="btn btn--inverse">Follow</button> <ul class="author__urls social-icons"> <li itemprop=homeLocation  itemscope itemtype="https://schema.org/Place"> <i class="fas fa-fw fa-map-marker-alt" aria-hidden=true ></i> <span itemprop=name >Hamirpur, India</span> <li><a href="https://twitter.com/Sov_trotter" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden=true ></i>Twitter</a> <li><a href="https://github.com/Sov-trotter" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden=true ></i>GitHub</a> <li><a href="https://www.linkedin.com/in/sov-trotter/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden=true ></i>LinkedIn</a> </ul> </div> </div> </div> <div class=franklin-content ><h3 id="शशवत_जवनम_अमर_परम"><a href="#शशवत_जवनम_अमर_परम" class=header-anchor >शाश्वतं जीवनम् , अमरं प्रेम । </a></h3> <h6 id=eternal_life_undying_passion ><a href="#eternal_life_undying_passion" class=header-anchor ><em>Eternal Life, Undying Passion.</em></a></h6> <hr /> <p>Continuing from the previous blog, where my mentor suggested an altogether new approach which involved looking at each layer, not as an <code>Object</code> but as a <code>Drawing</code>. <img src="/assets/layers_idea.png"> <em><pre>Credits: <a href="https://github.com/TheCedarPrince">Jacob Zelko</a></pre></em></p>
+<h5 id=what_if_we_treated_the_layer_as_its_own_rendering_process ><a href="#what_if_we_treated_the_layer_as_its_own_rendering_process" class=header-anchor >What if we treated the layer as it&#39;s own rendering process?</a></h5>
+<p><a href="https://github.com/Wikunia/Javis.jl/pull/343">#343</a> encapsulates the above idea&#33;</p>
+<p>Here&#39;s how this approach works:</p>
+<ul>
+<li><p>Layers are pushed to <code>video.layers</code> while independent objects&#40;objects which don&#39;t belong to any layer&#41; remain in <code>video.objects</code>.</p>
+
+<li><p>Rendering is now a three step process:</p>
+
+</ul>
+<pre><code class="julia hljs"><span class=hljs-keyword >for</span> each frame <span class=hljs-keyword >in</span> the video
+    <span class=hljs-keyword >if</span> layers exist
+
+    <span class=hljs-number >1</span>)  render(the layers as drawings, compute their actions and save their image matrices and settings based 
+         on the computed actions)
+    
+    <span class=hljs-number >2</span>)  create(an empty drawing(same size as the main video) and apply the actions on each layer) 
+         place(the respective layer&#x27;s image matrices on the empty drawing)
+     <span class=hljs-keyword >end</span>
+
+
+    <span class=hljs-number >3</span>) <span class=hljs-comment ># finally </span>
+    render(all the independent objects on the main drawing)
+    place(the drawing containing all the layers from step two on the main drawing)
+<span class=hljs-keyword >end</span></code></pre>
+<ul>
+<li><p>The layer declaration is a specialized macro viz. <code>@JLayer</code> that handles all the object/action declarations. </p>
+
+</ul>
+<pre><code class="julia hljs">l1 = <span class=hljs-meta >@JLayer</span> <span class=hljs-number >10</span>:<span class=hljs-number >70</span> <span class=hljs-number >100</span> <span class=hljs-number >100</span> Point(<span class=hljs-number >150</span>, <span class=hljs-number >150</span>) <span class=hljs-keyword >begin</span>
+    red_ball = Object(<span class=hljs-number >20</span>:<span class=hljs-number >60</span>, (args...)-&gt;object(O, <span class=hljs-string >&quot;red&quot;</span>), Point(<span class=hljs-number >50</span>,<span class=hljs-number >0</span>))
+    act!(red_ball, Action(anim_rotate_around(<span class=hljs-number >2</span><span class=hljs-literal >π</span>, O)))
+<span class=hljs-keyword >end</span>
+
+l2 = <span class=hljs-meta >@JLayer</span> <span class=hljs-number >71</span>:<span class=hljs-number >100</span> <span class=hljs-keyword >begin</span>
+    p = [Point(-<span class=hljs-number >1.0</span>, <span class=hljs-number >0.0</span>), Point(<span class=hljs-number >1.0</span>, <span class=hljs-number >0.0</span>), Point(<span class=hljs-number >0.0</span>, <span class=hljs-number >1.0</span>)]
+    Object(<span class=hljs-number >40</span>:<span class=hljs-number >100</span>, (args...) -&gt; poly(p, :stroke))
+<span class=hljs-keyword >end</span>
+
+act!(l1, appear(:fade))
+act!(l2, anim_translate(Point(<span class=hljs-number >100</span>, <span class=hljs-number >100</span>)))</code></pre>
+<ul>
+<li><p>One can also loop specific frame&#40;s&#41; of a layer after they have been rendered at any point in the video using the <code>show_layer_frames&#40;&#41;</code> method.</p>
+
+<li><p>Actions on a layer are applied in a different fashion as compared to objects. Now the layer actions are applied to their respective image matrices rather than their constituent objects, just like we wanted. This also resulted in a <a href="https://github.com/JuliaGraphics/Luxor.jl/pull/156">mini side-quest</a>.</p>
+
+<li><p>Objects can be pushed to a layer outside the <code>@JLayer</code> macro using <code>to_layer</code> method.</p>
+
+</ul>
+<h1 id=layers_gallery ><a href="#layers_gallery" class=header-anchor >Layers Gallery </a></h1>
+<p>Coming Soon&#33;</p>
+</div>
+
+      </div> 
+    </div>   
+
+    <div class=page__footer >
+      <footer>
+        
+        
+        <div class=page__footer-copyright >&copy; Arsh Sharma. Powered by <a href="https://github.com/tlienart/Franklin.jl">Franklin</a> &amp; <a href="https://julialang.org" rel=nofollow >The Julia Language</a>.</div>
+      </footer>
+    </div>
+
+    <script src="/libs/minimal-mistakes/main.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin=anonymous ></script>
