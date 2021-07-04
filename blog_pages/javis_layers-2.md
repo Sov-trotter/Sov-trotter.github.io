@@ -53,3 +53,7 @@ act!(l2, anim_translate(Point(100, 100)))
 * One can also loop specific frame(s) of a layer after they have been rendered at any point in the video using the `show_layer_frames()` method.
 * Actions on a layer are applied in a different fashion as compared to objects. Now the layer actions are applied to their respective image matrices rather than their constituent objects, just like we wanted. This also resulted in a ~~~<a href="https://github.com/JuliaGraphics/Luxor.jl/pull/156">mini side-quest</a>~~~.
 * Objects can be pushed to a layer outside the `@JLayer` macro using `to_layer` method.
+
+# Layers Gallery 
+
+Coming Soon!
