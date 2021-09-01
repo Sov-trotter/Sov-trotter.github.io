@@ -15,6 +15,8 @@ A series of blog posts covering my journey this summer with two amazing mentors,
 * ~~~<a href="/blog_pages/javis_livestreaming">Livestreaming</a>~~~
 * ~~~<a href="/blog_pages/javis_layers-1">Layers - First Steps</a>~~~
 * ~~~<a href="/blog_pages/javis_layers-2">Layers - Let's Draw it!</a>~~~
+* ~~~<a href="/blog_pages/javis_convenience">Convenience Methods - Making it friendly!</a>~~~
+* ~~~<a href="/blog_pages/javis_morphing">Morphing - Like Transformers!</a>~~~
 
 # A Probabilistic Encounter
 
