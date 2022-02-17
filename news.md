@@ -1,6 +1,5 @@
 @def title = "Latest News"
 
-# GSoC'21
 I am currently working as an intern at [Julia Computing](https://juliacomputing.com/), assisting the development of a [cloud-based simulation platform](https://juliacomputing.com/products/juliasim/).
 
 # Teaching
