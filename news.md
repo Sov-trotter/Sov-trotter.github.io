@@ -1,7 +1,7 @@
 @def title = "Latest News"
 
 # GSoC'21
-I am currently working on [Javis.jl](https://github.com/Wikunia/Javis.jl), a Cairo based mathematics animation engine. 
+I am currently working as an intern at [Julia Computing](https://juliacomputing.com/), assisting the development of a [cloud-based simulation platform](https://juliacomputing.com/products/juliasim/).
 
 # Teaching
 I really wish to teach Julia or programming in general to whosoever is interested.
