@@ -1,12 +1,25 @@
-@def title = "Blog"
-@def date = Date(2020, 08, 11)
 
 
-## Blog Posts
-1. [A Harmonious code-creativity relationship](#a_harmonious_code-creativity_relationship)
-2. [A Probabilistic Encounter](#a_probabilistic_encounter)
-3. [JSoC'20 @JuliaGeo](#jsoc20_juliageo)
+@def title = "Blog Posts"
+@def page_class = "blog-listing"
 
+[2025](#2025)~~~<sup>3</sup>~~~
+
+[2021](#2021)~~~<sup>2</sup>~~~
+
+[2020](#2020)~~~<sup>1</sup>~~~
+
+# 2025
+[Modeling a cache from scratch](/blog_pages/cache_modeling)
+
+[Pointer chasing for cache analysis](/blog_pages/ptr_chase)
+
+[Experiments in Performance Analysis - beyond measuring wall clock time/FLOPS](/blog_pages/mat_mul)
+
+# 2021
+[A Harmonious code-creativity relationship](#a_harmonious_code-creativity_relationship)
+
+[A Probabilistic Encounter](#a_probabilistic_encounter)
 # A Harmonious code-creativity relationship
 ~~~<img src="http://kmit.in/emagazine/wp-content/uploads/2016/07/banner-gsoc2016_2.png">~~~
 
@@ -22,6 +35,7 @@ A series of blog posts covering my journey this summer with two amazing mentors,
 
 * ~~~<a href="/blog_pages/ibmq">Birth of IBMQJulia.jl</a>~~~
 
+# 2020
 # JSoC'20 @JuliaGeo
 
 * ~~~<a href="/blog_pages/proposal">Project Plan</a>~~~

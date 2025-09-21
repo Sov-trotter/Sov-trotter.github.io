@@ -1,0 +1,65 @@
+<body class="layout--single">
+  {{ insert masthead.html }}
+  
+  <div class="initial-content">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+      <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item">
+            <span itemprop="name">Home</span>
+          </a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/blog/" itemprop="item">
+            <span itemprop="name">Posts</span>
+          </a>
+          <meta itemprop="position" content="2" />
+        </li>
+      </ol>
+    </nav>
+
+    <div id="main" role="main">
+      <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+        <meta itemprop="headline" content="{{ fill title }}">
+        <meta itemprop="description" content="{{ fill rss_description }}">
+        <meta itemprop="datePublished" content="{{ fill date }}">
+        <meta itemprop="dateModified" content="{{ fill date }}">
+        
+        <div class="page__inner-wrap">
+          <header>
+            <h1 id="page-title" class="page__title" itemprop="headline">{{ fill title }}</h1>
+            
+            <!-- Post metadata -->
+            <div class="page__meta">
+              <p class="page__date">
+                <time datetime="{{ fill date }}" itemprop="datePublished">
+                  {{ fill date }}
+                </time>
+                <span class="page__meta-sep"> · </span>
+                <span class="page__reading-time">
+                  {{ fill reading_time }} min read
+                </span>
+                <span class="page__meta-sep"> · </span>
+                <span class="page__word-count">
+                  {{ fill word_count }} words
+                </span>
+                <span class="page__meta-sep"> · </span>
+                <span class="page__author">
+                  {{ fill author }}
+                </span>
+              </p>
+            </div>
+          </header>
+
+          <section class="page__content" itemprop="text">
+            {{ fill content }}
+          </section>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  {{ insert foot.html }}
+</body>

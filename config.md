@@ -8,6 +8,7 @@ The website_* must be defined for the RSS to work
 @def website_url   = "https://Sov-trotter.github.io"
 
 @def author = "Arsh Sharma"
+@def page_class = ""
 
 @def mintoclevel = 2
 

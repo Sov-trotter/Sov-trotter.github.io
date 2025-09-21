@@ -1,0 +1,16 @@
+<body class="layout--single">
+  {{ insert masthead.html }}
+  
+  <div class="blog-container">
+    <!-- Blog listing content - no breadcrumbs or metadata -->
+    <div class="blog-post">
+      <h1 class="blog-title">{{ fill title }}</h1>
+      
+      <div class="blog-content">
+        {{ fill content }}
+      </div>
+    </div>
+  </div>
+
+  {{ insert foot.html }}
+</body>
