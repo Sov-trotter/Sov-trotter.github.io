@@ -5235,6 +5235,13 @@ a.reversefootnote:hover {
   display: none;
 }
 
+/* Hide breadcrumb, title, and metadata on about page */
+.blog-container.about-page .blog-breadcrumbs,
+.blog-container.about-page .blog-title,
+.blog-container.about-page .blog-meta {
+  display: none !important;
+}
+
 @media print {
   [hidden] {
     display: none

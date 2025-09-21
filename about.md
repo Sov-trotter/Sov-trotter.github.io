@@ -1,4 +1,5 @@
 @def title = "About Me"
+@def page_class = "about-page"
 
 I&#39;m, an Electonics undergraduate, currently in my senior year, at~~~<br>~~~
 National Institute of Technology[(NIT)](https://nith.ac.in/), Hamirpur, India.
