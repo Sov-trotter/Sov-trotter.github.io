@@ -51,35 +51,44 @@
         {{ insert foot_highlight.html }}
     {{ end }}
 
-    <!-- Typed.js Library -->
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <!-- Typed.js Library with fallback -->
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/typed.js@2.0.16/dist/typed.umd.js';"></script>
     
-    <!-- Typewriter Animation Script -->
+    <!-- Typewriter Animation Script with error handling -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        var typed = new Typed('.typewriter', {
-          strings: [
-            'नमस्ते।',           // Hindi
-            'Namaste',           // English
-            'ನಮಸ್ಕಾರ',           // Kannada
-            'வணக்கம்',           // Tamil
-            'നമസ്കാരം',          // Malayalam
-            'নমস্কার',           // Bengali
-            'नमस्कारः',          // Sanskrit
-            'नमस्कार',           // Marathi
-            'નમસ્કાર',           // Gujarati
-            'Hola',              // Spanish
-            'Bonjour'            // French
-          ],
-          typeSpeed: 120,
-          backSpeed: 50,
-          loop: true,
-          showCursor: true,
-          cursorChar: '|',
-          autoInsertCss: true,
-          backDelay: 2000,       // Wait 2 seconds before deleting
-          startDelay: 1000       // Wait 1 second before starting
-        });
+        // Check if Typed is available
+        if (typeof Typed !== 'undefined') {
+          var typed = new Typed('.typewriter', {
+            strings: [
+              'नमस्ते।',
+              'Namaste',
+              'ನಮಸ್ಕಾರ',
+              'வணக்கம்',
+              'നമസ്കാരം',
+              'নমস্কার',
+              'नमस्कारः',
+              'नमस्कार',
+              'નમસ્કાર',
+              'Hola',
+              'Bonjour'
+            ],
+            typeSpeed: 120,
+            backSpeed: 50,
+            loop: true,
+            showCursor: true,
+            cursorChar: '|',
+            autoInsertCss: true,
+            backDelay: 2000,
+            startDelay: 1000
+          });
+        } else {
+          // Fallback: just show the first string
+          var typewriterElement = document.querySelector('.typewriter');
+          if (typewriterElement) {
+            typewriterElement.textContent = 'नमस्ते।';
+          }
+        }
       });
     </script>
   </body>
