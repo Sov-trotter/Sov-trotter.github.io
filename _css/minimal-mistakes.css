@@ -4764,11 +4764,11 @@ a.reversefootnote:hover {
 /* Hero Section Styling */
 .page__hero--overlay {
   position: relative;
-  min-height: 40vh;
+  min-height: 15vh;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 2rem 0 2rem 0;
+  padding: 0.5rem 0 0.2rem 0;
 }
 
 .page__title {
@@ -4782,12 +4782,28 @@ a.reversefootnote:hover {
   display: block;
   transition: all 0.3s ease;
   cursor: pointer;
+  position: relative;
+}
+
+/* Remove the old cursor since we have a new one */
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Typed.js will handle the typewriter animation */
+.page__title {
+  position: relative;
+  display: inline-block;
 }
 
 .page__title:hover {
-  transform: translateY(-1px);
   color: #60a5fa;
 }
+
+/* Removed old cursor hover effect */
 
 .page__lead {
   font-size: 0.8rem;
@@ -4867,8 +4883,8 @@ a.reversefootnote:hover {
   }
   
   .page__hero--overlay {
-    min-height: 50vh;
-    padding: 2rem 1rem 1rem 1rem;
+    min-height: 20vh;
+    padding: 0.5rem 1rem 0.2rem 1rem;
   }
   
   /* Fix navigation spacing on mobile */
@@ -4897,8 +4913,8 @@ a.reversefootnote:hover {
   }
   
   .page__hero--overlay {
-    min-height: 40vh;
-    padding: 1.5rem 0.5rem 1rem 0.5rem;
+    min-height: 15vh;
+    padding: 0.3rem 0.5rem 0.1rem 0.5rem;
   }
   
   /* Further fix navigation on small mobile */
@@ -4926,7 +4942,7 @@ a.reversefootnote:hover {
 
 /* Blog Post Styling */
 .initial-content {
-  padding: 0.5rem 0;
+  padding: 0.2rem 0;
 }
 
 .breadcrumbs {
@@ -5431,8 +5447,301 @@ a.reversefootnote:hover {
     color: #000 !important
   }
 
-  .masthead,.toc,.page__share,.page__related,.pagination,.ads,.page__footer,.page__comments-form,.author__avatar,.author__content,.author__urls-wrapper,.nav__list,.sidebar,.adsbygoogle {
+  .masthead,.toc,.page__share,.page__related,.pagination,.ads,.page__footer,.page__comments-form,.author__avatar,.author__content,.author__urls-wrapper,.nav__list,.sidebar,.adsbygoogle {                              
     display: none !important;
     height: 1px !important
+  }
+}
+
+/* Blog Cards Section - Horizontal Layout */
+.blog-cards-section {
+  margin: 0.2rem 0;
+  padding: 0 2rem;
+}
+
+.blog-cards-title {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 0.8rem;
+  position: relative;
+}
+
+.blog-cards-title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #4a9eff, #60a5fa);
+  border-radius: 1px;
+}
+
+.blog-cards-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.blog-card {
+  background: #2a2a2a;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid #444;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 0 0 350px;
+  max-width: 400px;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(74, 158, 255, 0.2);
+  border-color: #4a9eff;
+}
+
+.blog-card-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blog-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blog-card-content {
+  padding: 0.8rem;
+}
+
+.blog-card-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 0.2rem 0;
+  line-height: 1.1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blog-card-meta {
+  font-size: 0.65rem;
+  color: #a0a0a0;
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.blog-card-date {
+  color: #4a9eff;
+  font-size: 0.55rem;
+  
+
+}
+
+.blog-card-excerpt {
+  font-size: 0.55rem;
+  color: #e8e8e8;
+  line-height: 1.3;
+  margin-bottom: 0.3rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blog-card-link {
+  display: inline-flex;
+  align-items: center;
+  color: #4a9eff;
+  text-decoration: none;
+  font-size: 0.65rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.blog-card-link:hover {
+  color: #60a5fa;
+}
+
+.blog-card-link::after {
+  content: '→';
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.blog-card-link:hover::after {
+  transform: translateX(3px);
+}
+
+/* Responsive adjustments for blog cards */
+@media screen and (max-width: 768px) {
+  .blog-cards-section {
+    margin: 0.1rem 0;
+    padding: 0 0.5rem;
+  }
+  
+  .blog-cards-title {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .blog-cards-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .blog-card {
+    flex: none;
+    max-width: 90%;
+    width: 90%;
+  }
+  
+  .blog-card-image {
+    height: 120px;
+  }
+  
+  .blog-card-content {
+    padding: 0.8rem;
+  }
+  
+  .blog-card-title {
+    font-size: 0.8rem;
+    margin-bottom: 0.1rem;
+  }
+  
+  .blog-card-meta {
+    font-size: 0.6rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .blog-card-excerpt {
+    font-size: 0.7rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .blog-card-link {
+    font-size: 0.7rem;
+  }
+}
+
+/* Extra narrow screens */
+@media screen and (max-width: 480px) {
+  .blog-cards-section {
+    padding: 0 0.3rem;
+  }
+  
+  .blog-cards-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .blog-card {
+    max-width: 85%;
+    width: 85%;
+  }
+  
+  .blog-card-content {
+    padding: 0.6rem;
+  }
+  
+  .blog-card-title {
+    font-size: 0.75rem;
+  }
+  
+  .blog-card-meta {
+    font-size: 0.55rem;
+  }
+  
+  .blog-card-excerpt {
+    font-size: 0.65rem;
+  }
+  
+  .blog-card-link {
+    font-size: 0.65rem;
+  }
+}
+
+/* Navigation Social Icons */
+.nav-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 0.8rem;
+}
+
+.nav-social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: #a0a0a0;
+  text-decoration: none;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.nav-social-icon:hover {
+  color: #4a9eff;
+  background: rgba(74, 158, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.nav-social-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Mobile responsive for nav social icons */
+@media screen and (max-width: 768px) {
+  .nav-social-icons {
+    gap: 0.3rem;
+    margin-left: 0.5rem;
+  }
+  
+  .nav-social-icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .nav-social-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .nav-social-icons {
+    gap: 0.2rem;
+    margin-left: 0.3rem;
+  }
+  
+  .nav-social-icon {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .nav-social-icon svg {
+    width: 14px;
+    height: 14px;
   }
 }

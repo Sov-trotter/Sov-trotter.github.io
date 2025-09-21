@@ -43,57 +43,68 @@
 <div class="initial-content">
   <div class="page__hero--overlay"
     <div class="wrapper">
-      <h1 id="page-title" class="page__title" itemprop="headline">नमस्ते।</h1>
+      <h1 id="page-title" class="page__title" itemprop="headline"><span class="typewriter"></span></h1>
       <p class="page__lead">The divine inside me, bows to the divine inside you.</p>
     </div>
   </div>
 
   <div id="main" role="main">
-      <!-- <section class="page__content" itemprop="text">
-        <div class="feature__wrapper">
-          <div class="feature__item">
-            <div class="archive__item">
-              <div class="archive__item-teaser">
-                <img src="/assets/minimal-mistakes/mm-customizable-feature.png" alt="customizable" />
-              </div>
-              <div class="archive__item-body">
-                <h2 class="archive__item-title">GitHub</h2>
-                <div class="archive__item-excerpt">
-                </div>
-                <p><a href="https://github.com/Sov-trotter " target="_blank" class="btn btn--primary">Visit my GitHub</a></p>
-              </div>
-            </div>
+    <!-- Blog Posts Section -->
+    <section class="blog-cards-section">
+      <h2 class="blog-cards-title">Recent Posts</h2>
+      <div class="blog-cards-container">
+        <!-- Blog Card 1 -->
+        <article class="blog-card">
+          <div class="blog-card-image">
+            <img src="/assets/performance-optimization.svg" alt="Performance Optimization" />
           </div>
-          <div class="feature__item">
-            <div class="archive__item">
-              <div class="archive__item-teaser">
-                <img src="/assets/minimal-mistakes/mm-responsive-feature.png" alt="News" />
-              </div>
-              <div class="archive__item-body">
-                <h2 class="archive__item-title">News</h2>
-                <div class="archive__item-excerpt">
-                  <p>Get to know what I am currently working on</p>
-                </div>
-                <p><a href="/news/" class="btn btn--primary">News</a></p>
-              </div>
+          <div class="blog-card-content">
+            <h3 class="blog-card-title">Pointer Chasing: The Hidden Performance Killer</h3>
+            <div class="blog-card-meta">
+              <span class="blog-card-date">Jan 15, 2024</span>
             </div>
+            <p class="blog-card-excerpt">
+              Understanding how pointer chasing affects performance and how to optimize it. Explore memory access patterns and optimization strategies.
+            </p>
+            <a href="/blog_pages/ptr_chase/" class="blog-card-link">Read More</a>
           </div>
-          <div class="feature__item">
-            <div class="archive__item">
-              <div class="archive__item-teaser">
-                <img src="/assets/minimal-mistakes/mm-free-feature.png" alt="100% free" />
-              </div>
-              <div class="archive__item-body">
-                <h2 class="archive__item-title">More About me</h2>
-                <div class="archive__item-excerpt">
-                  <p>My Interests, hobbies and everything outside professional life</p>
-                </div>
-                <p><a href="" class="btn btn--primary">To infinty</a></p>
-              </div>
+        </article>
+
+        <!-- Blog Card 2 -->
+        <article class="blog-card">
+          <div class="blog-card-image">
+            <img src="/assets/quantum-computing.svg" alt="Quantum Computing" />
+          </div>
+          <div class="blog-card-content">
+            <h3 class="blog-card-title">IBMQJulia.jl</h3>
+            <div class="blog-card-meta">
+              <span class="blog-card-date">Oct 31, 2020</span>
             </div>
+            <p class="blog-card-excerpt">
+              A Julia package for interfacing with IBM Quantum Experience, enabling quantum circuit execution on real hardware.
+            </p>
+            <a href="/blog_pages/ibmq/" class="blog-card-link">Read More</a>
           </div>
-        </div>
-      </section> -->
+        </article>
+
+        <!-- Blog Card 3 -->
+        <article class="blog-card">
+          <div class="blog-card-image">
+            <img src="/assets/generic-blog-image.svg" alt="Implementation" />
+          </div>
+          <div class="blog-card-content">
+            <h3 class="blog-card-title">Implementation</h3>
+            <div class="blog-card-meta">
+              <span class="blog-card-date">May 20, 2021</span>
+            </div>
+            <p class="blog-card-excerpt">
+              Technical implementation details and insights from various projects and research work.
+            </p>
+            <a href="/blog_pages/implementation/" class="blog-card-link">Read More</a>
+          </div>
+        </article>
+      </div>
+    </section>
     </article>
 
     {{ insert foot.html }}

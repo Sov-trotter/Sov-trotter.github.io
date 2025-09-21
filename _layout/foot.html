@@ -50,5 +50,37 @@
     {{ if hascode }}
         {{ insert foot_highlight.html }}
     {{ end }}
+
+    <!-- Typed.js Library -->
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    
+    <!-- Typewriter Animation Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var typed = new Typed('.typewriter', {
+          strings: [
+            'नमस्ते।',           // Hindi
+            'Namaste',           // English
+            'ನಮಸ್ಕಾರ',           // Kannada
+            'வணக்கம்',           // Tamil
+            'നമസ്കാരം',          // Malayalam
+            'নমস্কার',           // Bengali
+            'नमस्कारः',          // Sanskrit
+            'नमस्कार',           // Marathi
+            'નમસ્કાર',           // Gujarati
+            'Hola',              // Spanish
+            'Bonjour'            // French
+          ],
+          typeSpeed: 120,
+          backSpeed: 50,
+          loop: true,
+          showCursor: true,
+          cursorChar: '|',
+          autoInsertCss: true,
+          backDelay: 2000,       // Wait 2 seconds before deleting
+          startDelay: 1000       // Wait 1 second before starting
+        });
+      });
+    </script>
   </body>
 </html>
