@@ -54,25 +54,13 @@
     <!-- Typed.js Library with fallback -->
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/npm/typed.js@2.0.16/dist/typed.umd.js';"></script>
     
-    <!-- Typewriter Animation Script with error handling -->
+    <!-- Typewriter Animation Script -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        // Check if Typed is available
-        if (typeof Typed !== 'undefined') {
-          var typed = new Typed('.typewriter', {
-            strings: [
-              'नमस्ते।',
-              'Namaste',
-              'ನಮಸ್ಕಾರ',
-              'வணக்கம்',
-              'നമസ്കാരം',
-              'নমস্কার',
-              'नमस्कारः',
-              'नमस्कार',
-              'નમસ્કાર',
-              'Hola',
-              'Bonjour'
-            ],
+        var typewriterElement = document.querySelector('.typewriter');
+        if (typewriterElement && typeof Typed !== 'undefined') {
+          new Typed('.typewriter', {
+            strings: ['नमस्ते।', 'Namaste', 'ನಮಸ್ಕಾರ', 'வணக்கம்', 'നമസ്കാരം', 'নমস্কার', 'नमस्कारः', 'नमस्कार', 'નમસ્કાર', 'Hola', 'Bonjour'],
             typeSpeed: 120,
             backSpeed: 50,
             loop: true,
@@ -82,12 +70,8 @@
             backDelay: 2000,
             startDelay: 1000
           });
-        } else {
-          // Fallback: just show the first string
-          var typewriterElement = document.querySelector('.typewriter');
-          if (typewriterElement) {
-            typewriterElement.textContent = 'नमस्ते।';
-          }
+        } else if (typewriterElement) {
+          typewriterElement.textContent = 'नमस्ते।';
         }
       });
     </script>
