@@ -1,5 +1,6 @@
 @def title = "IBMQJulia.jl"
 @def date = Date(2020, 10, 31)
+@def description = "A Julia package for interfacing with IBM Quantum Experience, enabling quantum circuit execution on real hardware."
 
 ### ॐ पूर्णमदः पूर्णमिदं पूर्णात्पूर्णमुदच्यते ।
 ### पूर्णस्य पूर्णमादाय पूर्णमेवावशिष्यते ॥

@@ -53,56 +53,10 @@
     <section class="blog-cards-section">
       <h2 class="blog-cards-title">Recent Posts</h2>
       <div class="blog-cards-container">
-        <!-- Blog Card 1 -->
-        <article class="blog-card">
-          <div class="blog-card-image">
-            <img src="/assets/performance-optimization.svg" alt="Performance Optimization" />
-          </div>
-          <div class="blog-card-content">
-            <h3 class="blog-card-title">Pointer Chasing: The Hidden Performance Killer</h3>
-            <div class="blog-card-meta">
-              <span class="blog-card-date">Jan 15, 2024</span>
-            </div>
-            <p class="blog-card-excerpt">
-              Understanding how pointer chasing affects performance and how to optimize it. Explore memory access patterns and optimization strategies.
-            </p>
-            <a href="/blog_pages/ptr_chase/" class="blog-card-link">Read More</a>
-          </div>
-        </article>
-
-        <!-- Blog Card 2 -->
-        <article class="blog-card">
-          <div class="blog-card-image">
-            <img src="/assets/quantum-computing.svg" alt="Quantum Computing" />
-          </div>
-          <div class="blog-card-content">
-            <h3 class="blog-card-title">IBMQJulia.jl</h3>
-            <div class="blog-card-meta">
-              <span class="blog-card-date">Oct 31, 2020</span>
-            </div>
-            <p class="blog-card-excerpt">
-              A Julia package for interfacing with IBM Quantum Experience, enabling quantum circuit execution on real hardware.
-            </p>
-            <a href="/blog_pages/ibmq/" class="blog-card-link">Read More</a>
-          </div>
-        </article>
-
-        <!-- Blog Card 3 -->
-        <article class="blog-card">
-          <div class="blog-card-image">
-            <img src="/assets/generic-blog-image.svg" alt="Implementation" />
-          </div>
-          <div class="blog-card-content">
-            <h3 class="blog-card-title">Implementation</h3>
-            <div class="blog-card-meta">
-              <span class="blog-card-date">May 20, 2021</span>
-            </div>
-            <p class="blog-card-excerpt">
-              Technical implementation details and insights from various projects and research work.
-            </p>
-            <a href="/blog_pages/implementation/" class="blog-card-link">Read More</a>
-          </div>
-        </article>
+        <!-- Dynamic Blog Cards -->
+        {{ blog_card blog_pages/cache_modeling }}
+        {{ blog_card blog_pages/ibmq }}
+        {{ blog_card blog_pages/implementation }}
       </div>
     </section>
     </article>
