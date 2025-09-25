@@ -102,6 +102,13 @@ p {
     max-width: 65ch;
 }
 
+/* Image centering - override paragraph alignment */
+.franklin-content img {
+    display: block;
+    margin: 2rem auto;
+    text-align: center;
+}
+
 /* Better spacing for main content */
 .page__content {
     max-width: 1200px;

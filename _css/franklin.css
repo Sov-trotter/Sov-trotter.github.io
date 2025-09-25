@@ -206,9 +206,8 @@ html {
 ================================================================== */
 
 .franklin-content img {
-    /* width: 70%; */
     text-align: center;
-    background-color: white;
+    /* background-color: white; */
     /* padding-left: 10%;  */
 }
 .franklin-content .img-small img {

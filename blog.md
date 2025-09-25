@@ -10,18 +10,22 @@
 [2020](#2020)~~~<sup>1</sup>~~~
 
 # 2025
-[Modeling a cache from scratch](/blog_pages/cache_modeling)
+[Modeling a cache from scratch](#modeling_a_cache_from_scratch)
 
 [Pointer chasing for cache analysis](/blog_pages/ptr_chase)
 
 [Experiments in Performance Analysis - beyond measuring wall clock time/FLOPS](/blog_pages/mat_mul)
+
+# Modeling a cache from scratch
+~~~<img src="/assets/main_image.png" style="width:50%; height:50%;">~~~
+- [The Basics](/blog_pages/cache_modeling_basics)
+- [Implementation](/blog_pages/cache_modeling_implementation)
 
 # 2021
 [A Harmonious code-creativity relationship](#a_harmonious_code-creativity_relationship)
 
 [A Probabilistic Encounter](#a_probabilistic_encounter)
 # A Harmonious code-creativity relationship
-~~~<img src="http://kmit.in/emagazine/wp-content/uploads/2016/07/banner-gsoc2016_2.png">~~~
 
 A series of blog posts covering my journey this summer with two amazing mentors, ~~~<a href="https://github.com/TheCedarPrince">Jacob Zelko</a>~~~ and ~~~<a href="https://github.com/Wikunia">Ole Kröger</a>~~~ on an amazing software ~~~<a href="https://github.com/Wikunia/Javis.jl">Javis.jl</a>~~~ for the ~~~<a href="https://discourse.julialang.org/">Julia Language Community</a>~~~.
 

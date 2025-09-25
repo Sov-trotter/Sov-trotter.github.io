@@ -28,9 +28,9 @@ function hfun_blog_card(vname)
     
     # Get image based on page
     image_map = Dict(
-        "blog_pages/cache_modeling" => "/assets/cache-modeling.svg",
+        "blog_pages/cache_modeling_basics" => "/assets/main_image.png",
         "blog_pages/ibmq" => "/assets/quantum-computing.svg", 
-        "blog_pages/implementation" => "/assets/code-creativity.svg"
+        "blog_pages/cache_modeling_implementation" => "/assets/code-creativity.svg"
     )
     
     image_src = get(image_map, page_path, "/assets/generic-blog-image.svg")
