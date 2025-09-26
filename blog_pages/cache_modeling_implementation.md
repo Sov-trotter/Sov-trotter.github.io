@@ -137,7 +137,7 @@ which will create a structure as shown below:
 
 ~~~<img src="/assets/cache_model_hierarchyex.png" style="width:80%; height:80%;"">~~~
 
-> I think of the `nextLevel` and `prevLevels` mutation as a "hack" since the respective pointers to objects are available only after thoer declaration so I cannot pass them into the constructors for each cache.
+> I think of the `nextLevel` and `prevLevels` mutation as a "hack" since the respective pointers to objects are available only after their s declaration so I cannot pass them into respective the constructors.
 
 The `access` method is the heart of our cache simulation. It handles both hits and misses, updates metrics, and manages access to the next memory level.
 
