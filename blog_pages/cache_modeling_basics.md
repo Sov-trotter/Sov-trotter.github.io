@@ -3,6 +3,7 @@
 @def description = "Understanding the fundamentals of cache memory, its hierarchy, and key parameters affecting performance."
 
 # The Basics
+~~~<img src="/assets/main_image.png" style="width:50%; height:50%;">~~~
 
 When I first started diving into computer architecture, I was fascinated by how modern processors manage memory. 
 
