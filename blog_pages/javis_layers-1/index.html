@@ -144,3 +144,40 @@
         }
       });
     </script>
+    
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const tocElements = document.querySelectorAll('.franklin-toc');
+        
+        tocElements.forEach(function(toc) {
+          // Create a wrapper for the collapsible content
+          const tocList = toc.querySelector('ol');
+          if (!tocList) return;
+          
+          // Set initial state - expanded
+          tocList.style.maxHeight = tocList.scrollHeight + 'px';
+          tocList.style.overflow = 'hidden';
+          tocList.style.transition = 'max-height 0.3s ease-in-out';
+          
+          // Track collapsed state
+          let isCollapsed = false;
+          
+          // Add click handler to the TOC container
+          toc.addEventListener('click', function(event) {
+            // Only toggle if clicking on the header area (not on links)
+            if (event.target.tagName === 'A') return;
+            
+            isCollapsed = !isCollapsed;
+            
+            if (isCollapsed) {
+              tocList.style.maxHeight = '0';
+              toc.classList.add('collapsed');
+            } else {
+              tocList.style.maxHeight = tocList.scrollHeight + 'px';
+              toc.classList.remove('collapsed');
+            }
+          });
+        });
+      });
+    </script>
