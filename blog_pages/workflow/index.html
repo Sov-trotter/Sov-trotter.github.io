@@ -166,9 +166,17 @@
         const tocElements = document.querySelectorAll('.franklin-toc');
         
         tocElements.forEach(function(toc) {
-          // Create a wrapper for the collapsible content
           const tocList = toc.querySelector('ol');
           if (!tocList) return;
+          
+          // Create a clickable header element
+          const header = document.createElement('div');
+          header.className = 'toc-header';
+          header.innerHTML = '▼ Table of Contents';
+          header.style.cssText = 'cursor: pointer; user-select: none;';
+          
+          // Insert header before the list
+          toc.insertBefore(header, tocList);
           
           // Set initial state - expanded
           tocList.style.maxHeight = tocList.scrollHeight + 'px';
@@ -178,19 +186,18 @@
           // Track collapsed state
           let isCollapsed = false;
           
-          // Add click handler to the TOC container
-          toc.addEventListener('click', function(event) {
-            // Only toggle if clicking on the header area (not on links)
-            if (event.target.tagName === 'A') return;
-            
+          // Add click handler to the header only
+          header.addEventListener('click', function(event) {
             isCollapsed = !isCollapsed;
             
             if (isCollapsed) {
               tocList.style.maxHeight = '0';
               toc.classList.add('collapsed');
+              header.innerHTML = '▶ Table of Contents';
             } else {
               tocList.style.maxHeight = tocList.scrollHeight + 'px';
               toc.classList.remove('collapsed');
+              header.innerHTML = '▼ Table of Contents';
             }
           });
         });
