@@ -1,8 +1,8 @@
 @def title = "Cache Modeling: Prefetching"
 @def date = Date(2025, 09, 20)
 @def description = "Implementing and benchmarking different prefeteching strategies for our cache model in C++"
-
-# Prefetching
+\toc
+## Introduction
 Prefetching is a technique used to improve cache performance by predicting future memory accesses and loading data into the cache before it is actually requested by the CPU. This can help reduce cache misses and improve overall system performance.
 
 

@@ -109,6 +109,101 @@ p {
     text-align: center;
 }
 
+/* ===== Franklin Table of Contents Styling ===== */
+.franklin-toc {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 1.5rem 0;
+    padding: 0;
+    position: relative;
+    text-align: left;
+}
+
+/* Add collapsible header */
+.franklin-toc::before {
+    content: '▼ Table of Contents';
+    display: block;
+    background: transparent;
+    color: #4a9eff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    user-select: none;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+/* Rotate arrow when collapsed - now part of ::before content */
+.franklin-toc.collapsed::before {
+    content: '▶ Table of Contents';
+}
+
+/* Remove list numbering */
+.franklin-toc ol {
+    list-style: none !important;
+    counter-reset: none !important;
+    padding: 0.25rem 0 0.25rem 1rem;
+    margin: 0;
+}
+
+.franklin-toc ol li {
+    list-style: none !important;
+    list-style-type: none !important;
+}
+
+.franklin-toc ol li::marker {
+    content: none !important;
+}
+
+/* Style TOC links */
+.franklin-toc ol li a {
+    display: block;
+    padding: 0.15rem 0;
+    color: #f2efef;
+    font-weight: 200;
+    line-height: 1.3;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-size: 0.65rem;
+}
+
+.franklin-toc ol li a:hover {
+    color: #4a9eff;
+    padding-left: 0.5rem;
+}
+
+/* Nested list items with bullet points */
+.franklin-toc ol li ol li a {
+    padding-left: 1rem;
+    font-size: 0.75rem;
+}
+
+.franklin-toc ol li ol li a::before {
+    content: '• ';
+    color: #4a9eff;
+    font-weight: bold;
+}
+
+.franklin-toc ol li ol li ol li a {
+    padding-left: 1.75rem;
+}
+
+.franklin-toc ol li ol li ol li a::before {
+    content: '◦ ';
+    color: #60a5fa;
+}
+
+.franklin-toc ol li ol li ol li ol li a {
+    padding-left: 2.5rem;
+}
+
+.franklin-toc ol li ol li ol li ol li ol li a {
+    padding-left: 3.25rem;
+}
+
 /* Better spacing for main content */
 .page__content {
     max-width: 1200px;
