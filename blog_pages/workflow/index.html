@@ -138,19 +138,18 @@
         const visibleLinks = document.querySelector('.visible-links');
         
         if (hamburgerButton && hiddenLinks) {
-          // Close menu when clicking outside
+
           document.addEventListener('click', function(event) {
             const isClickInsideNav = hamburgerButton.contains(event.target) || 
                                    hiddenLinks.contains(event.target) ||
                                    visibleLinks.contains(event.target);
             
             if (!isClickInsideNav && !hiddenLinks.classList.contains('hidden')) {
-              // Menu is open and click is outside, so close it
+
               hamburgerButton.click();
             }
           });
           
-          // Close menu when pressing Escape key
           document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape' && !hiddenLinks.classList.contains('hidden')) {
               hamburgerButton.click();
