@@ -75,7 +75,8 @@ $$
 \text{Prefetcher Generated Cache Pollution} = \frac{\text{Number of Demand Misses Caused By the Prefetcher}}{\text{Number of Demand Misses}}
 $$
 
-[^1]: [https://hps.ece.utexas.edu/pub/srinath_hpca07.pdf](https://hps.ece.utexas.edu/pub/srinath_hpca07.pdf)
-
 
 ## Implementation
+
+[^1]: [https://hps.ece.utexas.edu/pub/srinath_hpca07.pdf](https://hps.ece.utexas.edu/pub/srinath_hpca07.pdf)
+

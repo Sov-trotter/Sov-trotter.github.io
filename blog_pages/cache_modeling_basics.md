@@ -1,8 +1,8 @@
 @def title = "Cache Modeling: The Basics"
 @def date = Date(2025, 09, 1)
 @def description = "Understanding the fundamentals of cache memory, its hierarchy, and key parameters affecting performance."
-
-# The Basics
+\toc
+## The Basics
 ~~~<img src="/assets/main_image.png" style="width:50%; height:50%;">~~~
 
 When I first started diving into computer architecture, I was fascinated by how modern processors manage memory. 
@@ -17,6 +17,7 @@ When the CPU requests a memory address:
 
 Another thing to note is that caches are smaller in size compared to main memory, so they can't hold all the data. Therefore, they use various strategies to decide which data to keep and which to evict when new data needs to be loaded. So the **overall goal** of any memory system or software optimization is to `reduce the number of cache misses`, and feed as much data as possible to the CPU, thereby improving performance.
 
+## AMAT
 The number of cache misses/miss rate is a **coarse** metric to measure performance impact, a much better metric is the `Average Memory Access Time` (AMAT) because it takes into account the total time required to get that data - or in other words how much time the CPU is waiting for data(due to memory).
 
 We can define, AMAT $= Hit\ latency + Miss\ ratio \times Miss\ penalty$
@@ -77,6 +78,7 @@ $$
 
 We see that AMAT has reduced from `11 cycles` to `4.4 cycles` by adding an additional cache level, which is a significant improvement.
 
+## Cache Mapping Techniques
 How a cache maps data from main memory to the cache is determined by its `mapping technique`. There are three common techniques:
 1. **Direct-Mapped Cache**: Each block of main memory maps to `exactly one` cache line. This is simple but can lead to many conflicts and cache misses.
 ~~~<img src="/assets/cache_model_fig2.png" style="width:50%; height:50%;">~~~
@@ -87,7 +89,7 @@ How a cache maps data from main memory to the cache is determined by its `mappin
 3. **Set-Associative Cache**: The cache is divided into sets, and each block of memory can `map to any line within a specific set`. This reduces conflicts compared to direct-mapped caches. `ways` are basically the number of cache lines in a set
 ~~~<img src="/assets/cache_model_fig4.png" style="width:50%; height:50%;">~~~
 
-
+## Cache Specific Parameters
 Apart from having different cache levels, there are cache specific parameters like:
 - **Cache Size**: Larger caches can store more data, which can reduce the number of cache misses. However, larger caches are also more expensive and can have longer access times.
 ~~~<img src="/assets/cache_model_cachesizevsmiss.png" style="width:50%; height:50%;">~~~

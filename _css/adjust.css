@@ -121,9 +121,8 @@ p {
     text-align: left;
 }
 
-/* Add collapsible header */
-.franklin-toc::before {
-    content: '▼ Table of Contents';
+/* Style the dynamically created header */
+.franklin-toc .toc-header {
     display: block;
     background: transparent;
     color: #4a9eff;
@@ -134,11 +133,6 @@ p {
     user-select: none;
     text-align: left;
     transition: all 0.3s ease;
-}
-
-/* Rotate arrow when collapsed - now part of ::before content */
-.franklin-toc.collapsed::before {
-    content: '▶ Table of Contents';
 }
 
 /* Remove list numbering */
