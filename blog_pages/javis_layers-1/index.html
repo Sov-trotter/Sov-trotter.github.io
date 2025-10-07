@@ -157,7 +157,7 @@
           // Create a clickable header element
           const header = document.createElement('div');
           header.className = 'toc-header';
-          header.innerHTML = '▼ Table of Contents';
+          header.innerHTML = '&#9660; Table of Contents';
           header.style.cssText = 'cursor: pointer; user-select: none;';
           
           // Insert header before the list
@@ -178,11 +178,11 @@
             if (isCollapsed) {
               tocList.style.maxHeight = '0';
               toc.classList.add('collapsed');
-              header.innerHTML = '▶ Table of Contents';
+              header.innerHTML = '&#9654; Table of Contents';
             } else {
               tocList.style.maxHeight = tocList.scrollHeight + 'px';
               toc.classList.remove('collapsed');
-              header.innerHTML = '▼ Table of Contents';
+              header.innerHTML = '&#9660; Table of Contents';
             }
           });
         });
