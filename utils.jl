@@ -30,7 +30,7 @@ function hfun_blog_card(vname)
     image_map = Dict(
         "blog_pages/cache_modeling_basics" => "/assets/main_image.png",
         "blog_pages/ibmq" => "/assets/quantum-computing.svg", 
-        "blog_pages/cache_modeling_implementation" => "/assets/code-creativity.svg"
+        "blog_pages/cache_modeling_implementation" => "/assets/cache_model_hierarchyex.png"
     )
     
     image_src = get(image_map, page_path, "/assets/generic-blog-image.svg")

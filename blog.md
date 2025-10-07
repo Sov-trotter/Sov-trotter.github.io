@@ -20,6 +20,7 @@
 ~~~<img src="/assets/main_image.png" style="width:50%; height:50%;">~~~
 - [The Basics](/blog_pages/cache_modeling_basics)
 - [Implementation](/blog_pages/cache_modeling_implementation)
+- [Prefetching](/blog_pages/cache_modeling_prefetch)
 
 # 2021
 [A Harmonious code-creativity relationship](#a_harmonious_code-creativity_relationship)
