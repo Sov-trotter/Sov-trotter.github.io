@@ -5757,3 +5757,73 @@ circle {
   line-height: 100px;
   margin-right:5px;
 }
+
+/* ===== Scroll to Top Button ===== */
+.scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  background-color: #4a9eff96;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(74, 158, 255, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(100px);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.scroll-to-top:hover {
+  background-color: #3a8eefe9;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(74, 158, 255, 0.5);
+}
+
+.scroll-to-top:active {
+  transform: translateY(-1px);
+}
+
+.scroll-to-top svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 768px) {
+  .scroll-to-top {
+    width: 44px;
+    height: 44px;
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+  
+  .scroll-to-top svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .scroll-to-top {
+    width: 40px;
+    height: 40px;
+    bottom: 1rem;
+    right: 1rem;
+  }
+}

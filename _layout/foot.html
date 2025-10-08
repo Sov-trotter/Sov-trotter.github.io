@@ -142,5 +142,46 @@
       });
       </script>
       
+      <!-- Scroll to Top Button -->
+      <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+      </button>
+      
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const scrollBtn = document.getElementById('scroll-to-top');
+        
+        if (!scrollBtn) return; // Exit if button doesn't exist
+        
+        // Ensure button is hidden initially
+        scrollBtn.classList.remove('visible');
+        
+        // Show/hide button based on scroll position
+        function toggleScrollButton() {
+          if (window.pageYOffset > 300) {
+            scrollBtn.classList.add('visible');
+          } else {
+            scrollBtn.classList.remove('visible');
+          }
+        }
+        
+        // Check immediately in case page is already scrolled
+        toggleScrollButton();
+        
+        window.addEventListener('scroll', toggleScrollButton);
+        
+        // Scroll to top when clicked
+        scrollBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      });
+      </script>
+      
   </body>
 </html>
