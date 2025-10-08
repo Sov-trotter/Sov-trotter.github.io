@@ -211,4 +211,4 @@ avg Memory access time:             2.35 cycles
 
 > This is a good time to stop and reflect on what we have built so far. We have a basic cache simulator that can model different cache configurations and hierarchies.
 
-In the next post, we will explore more advanced topics prefetching strategies, and how to validate our model against real-world data.
+In the ~~~<a href="../cache_modeling_prefetch">next blog</a>~~~, we explore more advanced topics like prefetching strategies.
