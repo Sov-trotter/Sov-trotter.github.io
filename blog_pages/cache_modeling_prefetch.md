@@ -77,6 +77,49 @@ $$
 
 
 ## Implementation
+If you recall, we implemented a generic ~~~<a href="../cache_modeling_implementation/#header_file">Cache class</a>~~~ in the previous blog post. We can extend that class to include a prefetch function.
+```cpp
+    void prefetch(uint32_t address_ptr, char* i_or_d, char* r_or_w);
+```
+The `prefetch` function does the following:
+- Calculate the `prefetch_address(es)` based on the prefetching strategy eg: for next-line prefetching, it would be 
+`address_ptr + blockSize`
+- Check if the `prefetch_address` is already present in the cache (to avoid redundant prefetches)
+- If not present, access the next level of memory to fetch the data into the cache
+- Update the cache's tag store and data store accordingly
+
+and then for each `access` to the cache, we can call the `prefetch` function.
+```
+if (prefetch) iCache->prefetch(pc, &i_or_d, &r_or_w);
+if (prefetch) dCache->prefetch(address, &i_or_d, &r_or_w);
+```
+
+## Benchmarking
+Using the `prefetch` function for both `I-cache` and `D-cache`, we can benchmark the performance of our cache model with and without prefetching. We can use the same traces as before and compare the metrics like:
+
+| Metric                      | No Prefetching | Next Line PF |
+|------------------------------|----------------|---------------|
+| total I-cache accesses       | 15,009,377     | 15,009,377    |
+| total I-cache misses         | 30,990         | ~~~<span class="positive">↓</span>~~~ 16,009        |
+| total I-cache penalties      | 1,952,100      | ~~~<span class="positive">↓</span>~~~ 922,450       |
+| I-cache miss rate            | 0.21%          | ~~~<span class="positive">↓</span>~~~ 0.11%       |
+| avg I-cache access time      | 2.13 cycles    | ~~~<span class="positive">↓</span>~~~ 2.06 cycles   |
+| total D-cache accesses       | 4,990,623      | 4,990,623     |
+| total D-cache misses         | 37,896         | ~~~<span class="positive">↓</span>~~~ 9,964         |
+| total D-cache penalties      | 5,084,000      | ~~~<span class="positive">↓</span>~~~ 718,400       |
+| D-cache miss rate            | 0.76%          | ~~~<span class="positive">↓</span>~~~ 0.20%         |
+| avg D-cache access time      | 3.02 cycles    | ~~~<span class="positive">↓</span>~~~ 2.14 cycles   |
+| total L2-cache accesses      | 68,886         | ~~~<span class="negative">↑</span>~~~ 113,925       |
+| total L2-cache misses        | 35,918         | ~~~<span class="negative">↑</span>~~~ 38,085        |
+| total L2-cache penalties     | 3,591,800      | ~~~<span class="negative">↑</span>~~~ 3,808,500     |
+| L2-cache miss rate           | 52.14%         | ~~~<span class="positive">↓</span>~~~ 33.43%        |
+| avg L2-cache access time     | 102.14 cycles  | ~~~<span class="positive">↓</span>~~~ 83.43 cycles  |
+| **AMAT**                     | **2.35**       | ~~~<span class="positive">↓</span>~~~ **2.08**          |
+
+Already by using the most simple next-line prefetching strategy, we can see a significant improvement in the overall `AMAT` of the system from `2.35 cycles` to `2.08 cycles`.
+
+
+
 
 [^1]: [https://hps.ece.utexas.edu/pub/srinath_hpca07.pdf](https://hps.ece.utexas.edu/pub/srinath_hpca07.pdf)
 

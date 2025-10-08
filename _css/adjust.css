@@ -263,19 +263,230 @@ li {
 }
 
 /* Improve table styling */
+/* Circle Highlight - White Outline Circle */
+.circle, circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3em;
+    min-height: 3em;
+    padding: 0.5em;
+    border: 2px solid #e8e8e8;
+    border-radius: 50%;
+    background-color: transparent;
+    color: #e8e8e8;
+    font-weight: 500;
+    font-size: 1em;
+    text-align: center;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.circle:hover, circle:hover {
+    border-color: #4a9eff;
+    color: #4a9eff;
+    transform: scale(1.05);
+}
+
+/* Small circle variant */
+.circle-sm {
+    min-width: 2em;
+    min-height: 2em;
+    padding: 0.3em;
+    font-size: 0.85em;
+    border-width: 1.5px;
+}
+
+/* Large circle variant */
+.circle-lg {
+    min-width: 4em;
+    min-height: 4em;
+    padding: 0.8em;
+    font-size: 1.2em;
+    border-width: 3px;
+}
+
+/* Inline circle for text */
+.circle-inline {
+    display: inline-flex;
+    min-width: 1.8em;
+    min-height: 1.8em;
+    padding: 0.2em;
+    font-size: 0.9em;
+    vertical-align: middle;
+    margin: 0 0.3em;
+}
+
+/* Table Cell Highlighting Styles */
+
+/* 1. Subtle background highlight (recommended) */
+td.highlight, td.improved {
+    background-color: rgba(74, 158, 255, 0.08) !important;
+    color: #60a5fa !important;
+}
+
+/* 2. Left border accent */
+td.highlight-border {
+    border-left: 3px solid #4a9eff !important;
+    padding-left: 1rem !important;
+    color: #60a5fa !important;
+}
+
+/* 3. Bottom border accent */
+td.highlight-underline {
+    border-bottom: 2px solid #4a9eff !important;
+    color: #60a5fa !important;
+}
+
+/* 4. Bold with color */
+td.highlight-bold {
+    font-weight: 600 !important;
+    color: #4a9eff !important;
+}
+
+/* 5. Green for positive improvements */
+td.positive, td.better {
+    color: #86efac !important;
+    font-weight: 500 !important;
+}
+
+/* Inline span arrows for markdown tables */
+span.positive {
+    color: #86efac;
+    font-weight: 700;
+    font-size: 1.1em;
+    margin-right: 0.3em;
+}
+
+span.negative {
+    color: #f87171;
+    font-weight: 700;
+    font-size: 1.1em;
+    margin-right: 0.3em;
+}
+
+td.positive-bg {
+    background-color: rgba(134, 239, 172, 0.08) !important;
+    color: #86efac !important;
+}
+
+/* 6. Subtle glow effect */
+td.highlight-glow {
+    color: #60a5fa !important;
+    text-shadow: 0 0 8px rgba(74, 158, 255, 0.3);
+}
+
+/* 7. Arrow indicators for improvements */
+td.arrow-up::before {
+    content: '↑ ';
+    color: #86efac;
+    font-weight: bold;
+    margin-right: 0.3em;
+}
+
+td.arrow-down::before {
+    content: '↓ ';
+    color: #f87171;
+    font-weight: bold;
+    margin-right: 0.3em;
+}
+
+/* 8. Percentage badge style */
+td.badge {
+    position: relative;
+}
+
+td.badge::after {
+    content: attr(data-improvement);
+    position: absolute;
+    top: -0.5em;
+    right: 0.2em;
+    font-size: 0.6rem;
+    color: #86efac;
+    font-weight: 600;
+}
+
+/* 9. Box/frame highlight */
+td.boxed {
+    border: 1px solid #4a9eff !important;
+    border-radius: 4px;
+    color: #60a5fa !important;
+}
+
+/* 10. Diagonal stripe pattern (subtle) */
+td.striped {
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(74, 158, 255, 0.03) 10px,
+        rgba(74, 158, 255, 0.03) 20px
+    );
+    color: #60a5fa !important;
+}
+
+/* LaTeX-style Table - Clean and Professional */
 table {
-    background-color: #2a2a2a;
-    border: 1px solid #444444;
-    border-radius: 6px;
+    display: table !important;
+    margin: 2rem auto !important;
+    width: auto !important;
+    max-width: 95%;
+    background-color: transparent;
+    border-collapse: collapse;
+    border: none;
+    font-family: 'Computer Modern', 'Latin Modern', serif;
 }
 
 thead {
-    background-color: #3a3a3a;
+    background: transparent;
+    border-top: 2px solid #e8e8e8;
+    border-bottom: 2px solid #e8e8e8;
 }
 
-th, td {
-    border-bottom: 1px solid #444444;
-    color: #e8e8e8;
+thead tr {
+    border: none;
+}
+
+th {
+    padding: 0.6rem 1.2rem !important;
+    font-weight: 500 !important;
+    text-align: center !important;
+    color: #e8e8e8 !important;
+    border: none !important;
+    font-size: 0.75rem !important;
+    text-transform: none;
+    letter-spacing: 0.3px;
+}
+
+th:first-child {
+    text-align: left !important;
+}
+
+td {
+    padding: 0.5rem 1.2rem !important;
+    border: none !important;
+    color: #d1d5db !important;
+    text-align: center !important;
+    font-size: 0.7rem !important;
+    font-weight: 400 !important;
+}
+
+td:first-child {
+    text-align: left !important;
+    font-weight: 400 !important;
+}
+
+tbody tr {
+    border-bottom: 1px solid #555555;
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+tbody tr:last-child {
+    border-bottom: 2px solid #e8e8e8;
 }
 
 /* Improve form styling */
