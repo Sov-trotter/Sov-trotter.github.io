@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16213e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cpuGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4a9eff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3a7ecf;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="perfGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#86efac;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6ec78f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  
+  
+  <!-- CPU Core visualization -->
+  <g id="cpu-cores">
+    <rect x="50" y="80" width="200" height="200" rx="10" fill="#2a2a3e" stroke="#4a9eff" stroke-width="3"/>
+    <text x="150" y="110" font-family="monospace" font-size="16" fill="#4a9eff" text-anchor="middle" font-weight="bold">CPU CORES</text>
+    
+    <!-- Core 1 -->
+    <rect x="70" y="130" width="80" height="60" rx="5" fill="url(#cpuGrad)" opacity="0.8"/>
+    <text x="110" y="155" font-family="monospace" font-size="12" fill="#fff" text-anchor="middle">Core 0</text>
+    <text x="110" y="175" font-family="monospace" font-size="11" fill="#fff" text-anchor="middle">85%</text>
+    
+    <!-- Core 2 -->
+    <rect x="170" y="130" width="80" height="60" rx="5" fill="url(#cpuGrad)" opacity="0.9"/>
+    <text x="210" y="155" font-family="monospace" font-size="12" fill="#fff" text-anchor="middle">Core 1</text>
+    <text x="210" y="175" font-family="monospace" font-size="11" fill="#fff" text-anchor="middle">92%</text>
+    
+    <!-- Core 3 -->
+    <rect x="70" y="205" width="80" height="60" rx="5" fill="url(#cpuGrad)" opacity="0.7"/>
+    <text x="110" y="230" font-family="monospace" font-size="12" fill="#fff" text-anchor="middle">Core 2</text>
+    <text x="110" y="250" font-family="monospace" font-size="11" fill="#fff" text-anchor="middle">78%</text>
+    
+    <!-- Core 4 -->
+    <rect x="170" y="205" width="80" height="60" rx="5" fill="url(#cpuGrad)" opacity="0.85"/>
+    <text x="210" y="230" font-family="monospace" font-size="12" fill="#fff" text-anchor="middle">Core 3</text>
+    <text x="210" y="250" font-family="monospace" font-size="11" fill="#fff" text-anchor="middle">88%</text>
+  </g>
+  
+  <!-- Performance Metrics -->
+  <g id="metrics">
+    <rect x="300" y="80" width="450" height="200" rx="10" fill="#2a2a3e" stroke="#86efac" stroke-width="3"/>
+    
+    <!-- IPC -->
+    <g transform="translate(350, 145)">
+      <text x="0" y="0" font-family="monospace" font-size="14" fill="#e8e8e8" font-weight="bold">IPC:</text>
+      <text x="180" y="0" font-family="monospace" font-size="14" fill="#4a9eff" text-anchor="end">2.5</text>
+      <rect x="0" y="10" width="180" height="10" rx="5" fill="#3a3a4e"/>
+      <rect x="0" y="10" width="150" height="10" rx="5" fill="url(#perfGrad)"/>
+    </g>
+    
+    <!-- Cache Hits -->
+    <g transform="translate(350, 190)">
+      <text x="0" y="0" font-family="monospace" font-size="14" fill="#e8e8e8" font-weight="bold">Cache Hits:</text>
+      <text x="180" y="0" font-family="monospace" font-size="14" fill="#86efac" text-anchor="end">96.2%</text>
+      <rect x="0" y="10" width="180" height="10" rx="5" fill="#3a3a4e"/>
+      <rect x="0" y="10" width="173" height="10" rx="5" fill="url(#perfGrad)"/>
+    </g>
+    
+    <!-- Cache Misses -->
+    <g transform="translate(350, 235)">
+      <text x="0" y="0" font-family="monospace" font-size="14" fill="#e8e8e8" font-weight="bold">Cache Misses:</text>
+      <text x="180" y="0" font-family="monospace" font-size="14" fill="#f87171" text-anchor="end">3.8%</text>
+      <rect x="0" y="10" width="180" height="10" rx="5" fill="#3a3a4e"/>
+      <rect x="0" y="10" width="7" height="10" rx="5" fill="#f87171"/>
+    </g>
+  </g>
+  
+  <!-- Performance Graph -->
+  <g id="graph">
+    <rect x="50" y="320" width="700" height="240" rx="10" fill="#2a2a3e" stroke="#4a9eff" stroke-width="3"/>
+    
+    <!-- Grid lines -->
+    <line x1="80" y1="380" x2="720" y2="380" stroke="#3a3a4e" stroke-width="1" stroke-dasharray="5,5"/>
+    <line x1="80" y1="420" x2="720" y2="420" stroke="#3a3a4e" stroke-width="1" stroke-dasharray="5,5"/>
+    <line x1="80" y1="460" x2="720" y2="460" stroke="#3a3a4e" stroke-width="1" stroke-dasharray="5,5"/>
+    <line x1="80" y1="500" x2="720" y2="500" stroke="#3a3a4e" stroke-width="1" stroke-dasharray="5,5"/>
+    
+    <!-- Y-axis labels -->
+    <text x="70" y="385" font-family="monospace" font-size="11" fill="#a0a0a0" text-anchor="end">100%</text>
+    <text x="70" y="425" font-family="monospace" font-size="11" fill="#a0a0a0" text-anchor="end">75%</text>
+    <text x="70" y="465" font-family="monospace" font-size="11" fill="#a0a0a0" text-anchor="end">50%</text>
+    <text x="70" y="505" font-family="monospace" font-size="11" fill="#a0a0a0" text-anchor="end">25%</text>
+    
+    <!-- Performance line chart -->
+    <polyline points="80,450 140,420 200,440 260,400 320,410 380,390 440,405 500,385 560,400 620,395 680,410 720,400" 
+              fill="none" stroke="#86efac" stroke-width="3" opacity="0.9"/>
+    
+    <!-- Area under curve -->
+    <polygon points="80,500 140,420 200,440 260,400 320,410 380,390 440,405 500,385 560,400 620,395 680,410 720,400 720,500" 
+             fill="#86efac" opacity="0.2"/>
+    
+    <!-- Data points -->
+    <circle cx="80" cy="450" r="4" fill="#86efac"/>
+    <circle cx="140" cy="420" r="4" fill="#86efac"/>
+    <circle cx="200" cy="440" r="4" fill="#86efac"/>
+    <circle cx="260" cy="400" r="4" fill="#86efac"/>
+    <circle cx="320" cy="410" r="4" fill="#86efac"/>
+    <circle cx="380" cy="390" r="4" fill="#86efac"/>
+    <circle cx="440" cy="405" r="4" fill="#86efac"/>
+    <circle cx="500" cy="385" r="4" fill="#86efac"/>
+    <circle cx="560" cy="400" r="4" fill="#86efac"/>
+    <circle cx="620" cy="395" r="4" fill="#86efac"/>
+    <circle cx="680" cy="410" r="4" fill="#86efac"/>
+    <circle cx="720" cy="400" r="4" fill="#86efac"/>
+    
+    <!-- X-axis time labels -->
+    <text x="80" y="525" font-family="monospace" font-size="10" fill="#a0a0a0" text-anchor="middle">0s</text>
+    <text x="260" y="525" font-family="monospace" font-size="10" fill="#a0a0a0" text-anchor="middle">3s</text>
+    <text x="440" y="525" font-family="monospace" font-size="10" fill="#a0a0a0" text-anchor="middle">6s</text>
+    <text x="620" y="525" font-family="monospace" font-size="10" fill="#a0a0a0" text-anchor="middle">9s</text>
+  </g>
+  
+  <!-- Legend -->
+  <g id="legend">
+    <rect x="620" y="535" width="12" height="12" fill="#86efac"/>
+    <text x="638" y="545" font-family="monospace" font-size="11" fill="#e8e8e8">CPU Utilization</text>
+  </g>
+</svg>
+
