@@ -6,17 +6,16 @@
 \toc
 
 ## 2025
-[Modeling a cache from scratch](#modeling_a_cache_from_scratch)
-
-[Pointer chasing for cache analysis](/blog_pages/ptr_chase)
-
-[Experiments in Performance Analysis - beyond measuring wall clock time/FLOPS](/blog_pages/mat_mul)
-
 ### Modeling a cache from scratch
 ~~~<img src="/assets/main_image.png" style="width:50%; height:50%;">~~~
 - [The Basics](/blog_pages/cache_modeling_basics)
 - [Implementation](/blog_pages/cache_modeling_implementation)
 - [Prefetching](/blog_pages/cache_modeling_prefetch)
+
+### Experiments in Performance Analysis
+~~~<img src="https://pbs.twimg.com/media/D84YfENX4AA8iGW?format=png" style="width:30%; height:30%;">~~~
+- [Matrix Multiplication: Cache-aware optimizations](/blog_pages/mat_mul)
+- [Profiling: From a Silicon Engineer perspective](/blog_pages/profiling)
 
 ## 2021
 [A Harmonious code-creativity relationship](#a_harmonious_code-creativity_relationship)

@@ -365,6 +365,14 @@ span.negative {
     margin-right: 0.3em;
 }
 
+/* Underline all h3 headings */
+h3 {
+    text-decoration: underline;
+    text-decoration-color: #4a9eff;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.3em;
+}
+
 td.positive-bg {
     background-color: rgba(134, 239, 172, 0.08) !important;
     color: #86efac !important;

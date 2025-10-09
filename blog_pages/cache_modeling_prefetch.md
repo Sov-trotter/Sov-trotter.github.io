@@ -94,7 +94,7 @@ if (prefetch) iCache->prefetch(pc, &i_or_d, &r_or_w);
 if (prefetch) dCache->prefetch(address, &i_or_d, &r_or_w);
 ```
 
-## Benchmarking
+## Results
 Using the `prefetch` function for both `I-cache` and `D-cache`, we can benchmark the performance of our cache model with and without prefetching. We can use the same traces as before and compare the metrics like:
 
 | Metric                      | No Prefetching | Next Line PF |
