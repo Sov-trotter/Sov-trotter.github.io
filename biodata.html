@@ -115,10 +115,19 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
             cursor: pointer;
             transition: transform 0.3s ease;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+            touch-action: manipulation;
+            pointer-events: auto;
+            user-select: none;
+            -webkit-user-drag: none;
         }
 
         .side-image:hover {
             transform: scale(1.03);
+        }
+
+        .side-image:active {
+            transform: scale(0.98);
         }
 
         .image-row {
@@ -136,10 +145,19 @@
             cursor: pointer;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+            touch-action: manipulation;
+            pointer-events: auto;
+            user-select: none;
+            -webkit-user-drag: none;
         }
 
         .thumbnail:hover {
             transform: scale(1.05);
+        }
+
+        .thumbnail:active {
+            transform: scale(0.98);
         }
 
         .video-thumb {
@@ -149,6 +167,15 @@
             overflow: hidden;
             cursor: pointer;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+            touch-action: manipulation;
+            pointer-events: auto;
+            user-select: none;
+            transition: transform 0.3s ease;
+        }
+
+        .video-thumb:active {
+            transform: scale(0.98);
         }
 
         .video-thumb::after {
@@ -166,6 +193,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            pointer-events: none;
         }
 
         .looking-for {
@@ -195,10 +223,19 @@
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+            touch-action: manipulation;
+            pointer-events: auto;
+            user-select: none;
+            -webkit-user-drag: none;
         }
 
         .looking-images img:hover {
             transform: scale(1.05);
+        }
+
+        .looking-images img:active {
+            transform: scale(0.98);
         }
 
         .quiz-section {
@@ -237,6 +274,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+            touch-action: manipulation;
         }
 
         .quiz-btn:hover {
@@ -351,10 +390,18 @@
             color: white;
             cursor: pointer;
             transition: transform 0.3s ease;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+            touch-action: manipulation;
+            padding: 10px;
+            z-index: 1001;
         }
 
         .lightbox-close:hover {
             transform: scale(1.2);
+        }
+
+        .lightbox-close:active {
+            transform: scale(0.9);
         }
 
         .lightbox-nav {
@@ -367,10 +414,17 @@
             padding: 20px;
             user-select: none;
             transition: transform 0.3s ease;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+            touch-action: manipulation;
+            z-index: 1001;
         }
 
         .lightbox-nav:hover {
             transform: translateY(-50%) scale(1.2);
+        }
+
+        .lightbox-nav:active {
+            transform: translateY(-50%) scale(0.9);
         }
 
         .lightbox-prev {
@@ -410,10 +464,44 @@
 
             .quiz-btn {
                 width: 100%;
+                min-height: 48px;
             }
 
             .looking-images {
                 grid-template-columns: 1fr;
+            }
+
+            .thumbnail {
+                height: 200px;
+                min-height: 200px;
+            }
+
+            .video-thumb {
+                height: 200px;
+                min-height: 200px;
+            }
+
+            .side-image {
+                min-height: 250px;
+            }
+
+            .lightbox-close {
+                font-size: 35px;
+                right: 15px;
+                top: 15px;
+            }
+
+            .lightbox-nav {
+                font-size: 35px;
+                padding: 15px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
             }
         }
     </style>
@@ -574,7 +662,12 @@
             { type: 'image', src: '/assets/img5.jpeg' }
         ];
 
-        function openLightbox(index) {
+        function openLightbox(index, event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            
             currentMediaIndex = index;
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
@@ -684,6 +777,57 @@
             const instagramLink = document.getElementById('instagram-link');
             // Replace this with your actual Instagram URL
             instagramLink.href = 'https://www.instagram.com/_chicken_tendies';
+
+            // Add touch event support for mobile - Images
+            const clickableImages = document.querySelectorAll('.side-image, .thumbnail, .looking-images img');
+            const videoThumbs = document.querySelectorAll('.video-thumb');
+            
+            clickableImages.forEach((img, index) => {
+                // Find the correct media index from the onclick attribute
+                const onclickAttr = img.getAttribute('onclick');
+                if (onclickAttr) {
+                    const match = onclickAttr.match(/openLightbox\((\d+)\)/);
+                    if (match) {
+                        const mediaIndex = parseInt(match[1]);
+                        img.addEventListener('touchend', function(e) {
+                            e.preventDefault();
+                            openLightbox(mediaIndex, e);
+                        }, { passive: false });
+                    }
+                }
+            });
+
+            videoThumbs.forEach((thumb) => {
+                const onclickAttr = thumb.getAttribute('onclick');
+                if (onclickAttr) {
+                    const match = onclickAttr.match(/openLightbox\((\d+)\)/);
+                    if (match) {
+                        const mediaIndex = parseInt(match[1]);
+                        thumb.addEventListener('touchend', function(e) {
+                            e.preventDefault();
+                            openLightbox(mediaIndex, e);
+                        }, { passive: false });
+                    }
+                }
+            });
+
+            // Add touch event support for quiz buttons
+            const quizButtons = document.querySelectorAll('.quiz-btn');
+            quizButtons.forEach((button) => {
+                const onclickAttr = button.getAttribute('onclick');
+                if (onclickAttr) {
+                    button.addEventListener('touchend', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        // Extract the answer type from onclick attribute
+                        const match = onclickAttr.match(/checkAnswer\('(\w+)',\s*this\)/);
+                        if (match) {
+                            const answerType = match[1];
+                            checkAnswer(answerType, button);
+                        }
+                    }, { passive: false });
+                }
+            });
         });
     </script>
 </body>
