@@ -31,18 +31,14 @@ Memory: 16 GB DDR4
 
 **Compilation Command:**
 ```bash
-g++ -mavx -mfma -march=native -O0 -o simd_matmul \
-    ../../../matmul_perf_profiling-master/specific_runner.cpp
+g++ -mavx -mfma -march=native -O0 -o simd_matmul ../../../matmul_perf_profiling-master/specific_runner.cpp
 ```
 
 **Profiling Command:**
 ```bash
-sudo perf stat -e "L1-dcache-loads,L1-dcache-load-misses,\
-L1-dcache-prefetches,L1-icache-loads,L1-icache-load-misses,\
-dTLB-loads,dTLB-load-misses,iTLB-loads,iTLB-load-misses,\
-branch-loads,branch-load-misses,branch-instructions,branch-misses,\
-cache-misses,cache-references,cpu-cycles,instructions" -C 3 \
-numactl -C 3 ./<bin_name>
+sudo perf stat -e "L1-dcache-loads,L1-dcache-load-misses,L1-dcache-prefetches,L1-icache-loads,L1-icache-load-misses,
+dTLB-loads,dTLB-load-misses,iTLB-loads,iTLB-load-misses, branch-loads,branch-load-misses,branch-instructions,branch-misses,\
+cache-misses,cache-references,cpu-cycles,instructions" -C 3 numactl -C 3 ./<bin_name>
 ```
 
 Note: We used `-O0` (no compiler optimizations) to isolate the impact of our manual cache-aware optimizations. The code was pinned to CPU core 3 using `numactl` to ensure consistent measurements.

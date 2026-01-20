@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arsh Sharma - Biodata</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section h2 {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 8px;
+        }
+
+        .two-col-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .info-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+
+        .info-item strong {
+            color: #764ba2;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.95em;
+        }
+
+        .info-item p {
+            font-size: 0.95em;
+            margin: 0;
+        }
+
+        .side-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .side-image:hover {
+            transform: scale(1.03);
+        }
+
+        .image-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.05);
+        }
+
+        .video-thumb {
+            position: relative;
+            height: 150px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-thumb::after {
+            content: '▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5em;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-thumb video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .looking-for {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .looking-for p {
+            font-size: 1em;
+            line-height: 1.7;
+        }
+
+        .looking-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .looking-images img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .looking-images img:hover {
+            transform: scale(1.05);
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .quiz-section h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .quiz-section p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .quiz-options {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .quiz-btn {
+            padding: 12px 25px;
+            font-size: 1em;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .quiz-btn:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .quiz-btn.correct {
+            background: #2ecc71;
+            border-color: #2ecc71;
+            animation: pulse 0.5s;
+        }
+
+        .quiz-btn.wrong {
+            background: #e74c3c;
+            border-color: #e74c3c;
+            animation: shake 0.5s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .instagram-reveal {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            animation: slideDown 0.5s ease;
+        }
+
+        .instagram-reveal.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .instagram-link {
+            display: inline-block;
+            padding: 12px 35px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .instagram-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+        }
+
+        .lightbox-video {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.2);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            color: white;
+            cursor: pointer;
+            padding: 20px;
+            user-select: none;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .two-col-layout {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quiz-options {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .quiz-btn {
+                width: 100%;
+            }
+
+            .looking-images {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Arsh Sharma</h1>
+        </div>
+
+        <div class="content">
+            <!-- About Me with Side Image -->
+            <div class="section">
+                <h2>About Me</h2>
+                <div class="two-col-layout">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <strong>Date of Birth</strong>
+                            <p>31st October, 1999</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Height</strong>
+                            <p>5'5"</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Education</strong>
+                            <p>Dual Degree (B.Tech + M.Tech) in Electronics<br>
+                            National Institute of Technology, Hamirpur (2023)</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Schooling</strong>
+                            <p>Mount Carmel School, Palampur (ICSE)<br>
+                            Nursery to Class 12</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Current Position</strong>
+                            <p>ASIC Engineer at <a href="https://www.nvidia.com/" target="_blank" style="color: #76b900; text-decoration: none; font-weight: 600;">NVIDIA</a>, Bangalore</p>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="/assets/img3.jpeg" alt="Arsh Sharma" class="side-image" onclick="openLightbox(2)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Family Details -->
+                <h3> My Family </h3>
+                <div class="two-col-layout">
+                    <div class="info-item">
+                        <p>
+                            <strong>Father:</strong> Retired from Himachal Pradesh Government Service<br>
+                            <strong>Mother:</strong> Homemaker<br>
+                            <strong>ElderSister:</strong> Settled in the Netherlands, working there
+                            <strong>Hometown:</strong> Daroh, Palampur, Himachal Pradesh<br>
+                            
+                        </p>
+                        
+                    </div>
+                </div>
+            
+            <!-- Philosophy & Interests with Video -->
+            <div class="section">
+                <h2>My Philosophy & Interests</h2>
+                <div class="two-col-layout">
+                    <div class="info-item">
+                        <p>
+                            I believe life is too short to crib and complain, and one should enjoy life to the fullest. 
+                            <strong>Work hard and party harder!</strong> I'm passionate about running, hitting the gym, 
+                            and have a knack for travelling and adventure. Always up for the next exciting experience!
+                        </p>
+                    </div>
+                    <div class="video-thumb" onclick="openLightbox(7)">
+                        <video>
+                            <source src="/assets/vid1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="image-row">
+                    <img src="/assets/img_1.jpg" alt="Arsh" class="thumbnail" onclick="openLightbox(0)">
+                    <img src="/assets/img4.jpeg" alt="Gym" class="thumbnail" onclick="openLightbox(3)">
+                    <img src="/assets/img7.jpeg" alt="Travel" class="thumbnail" onclick="openLightbox(4)">
+                    <img src="/assets/img8.jpeg" alt="Adventure" class="thumbnail" onclick="openLightbox(5)">
+                    <img src="/assets/img9.jpeg" alt="Life" class="thumbnail" onclick="openLightbox(6)">
+                        <img src="/assets/img2.jpeg" alt="Arsh Sharma" class="side-image" onclick="openLightbox(1)">
+                    <div class="video-thumb" onclick="openLightbox(8)">
+                        <video>
+                            <source src="/assets/vid2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <!-- What I'm Looking For Section -->
+            <div class="section">
+                <h2>Looking For Someone who......</h2>
+                <div class="looking-for">
+                    <p>
+                        Has done the inner work, or at least knows what inner work is. 
+                        Can agree to the fact that <strong>peace is more important than proving a point</strong>.
+                        Everything else is secondary and can be worked out...
+                        Also the images below add more context... 😝
+                    </p>
+                    <div class="looking-images">
+                        <img src="/assets/img10.jpeg" alt="What matters" onclick="openLightbox(9)">
+                        <img src="/assets/img5.jpeg" alt="Philosophy" onclick="openLightbox(10)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Section -->
+            <div class="quiz-section">
+                <h3>If you've read this far, let's get in touch but first answer this question...</h3>
+                <p>How many episodes of a series is it acceptable to watch in one go?</p>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkAnswer('wrong1', this)">1 Episode</button>
+                    <button class="quiz-btn" onclick="checkAnswer('correct', this)">Entire Season</button>
+                    <button class="quiz-btn" onclick="checkAnswer('wrong2', this)">I Don't Care</button>
+                </div>
+                <div class="instagram-reveal" id="instagram-reveal">
+                    <p class="message">🎉 Perfect! You get it!</p>
+                    <a href="#" class="instagram-link" id="instagram-link" target="_blank">
+                        Connect on Instagram
+                    </a>
+                </div>
+                <div class="message" id="feedback-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+        <span class="lightbox-nav lightbox-prev" onclick="changeMedia(-1, event)">&#10094;</span>
+        <span class="lightbox-nav lightbox-next" onclick="changeMedia(1, event)">&#10095;</span>
+        <img id="lightbox-img" class="lightbox-content" style="display: none;">
+        <video id="lightbox-video" class="lightbox-video" controls style="display: none;">
+            <source id="lightbox-video-source" type="video/mp4">
+        </video>
+    </div>
+
+    <script>
+        let answered = false;
+        let currentMediaIndex = 0;
+
+        // Media sources array (images and videos)
+        const mediaSources = [
+            { type: 'image', src: '/assets/img_1.jpg' },
+            { type: 'image', src: '/assets/img2.jpeg' },
+            { type: 'image', src: '/assets/img3.jpeg' },
+            { type: 'image', src: '/assets/img4.jpeg' },
+            { type: 'image', src: '/assets/img7.jpeg' },
+            { type: 'image', src: '/assets/img8.jpeg' },
+            { type: 'image', src: '/assets/img9.jpeg' },
+            { type: 'video', src: '/assets/vid1.mp4' },
+            { type: 'video', src: '/assets/vid2.mp4' },
+            { type: 'image', src: '/assets/img10.jpeg' },
+            { type: 'image', src: '/assets/img5.jpeg' }
+        ];
+
+        function openLightbox(index) {
+            currentMediaIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxVideo = document.getElementById('lightbox-video');
+            const lightboxVideoSource = document.getElementById('lightbox-video-source');
+
+            const media = mediaSources[index];
+
+            if (media.type === 'image') {
+                lightboxImg.src = media.src;
+                lightboxImg.style.display = 'block';
+                lightboxVideo.style.display = 'none';
+                lightboxVideo.pause();
+            } else {
+                lightboxVideoSource.src = media.src;
+                lightboxVideo.load();
+                lightboxVideo.style.display = 'block';
+                lightboxImg.style.display = 'none';
+            }
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(event) {
+            if (event.target.id === 'lightbox' || event.target.className === 'lightbox-close') {
+                const lightbox = document.getElementById('lightbox');
+                const lightboxVideo = document.getElementById('lightbox-video');
+                
+                lightbox.classList.remove('active');
+                lightboxVideo.pause();
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function changeMedia(direction, event) {
+            event.stopPropagation();
+            currentMediaIndex += direction;
+
+            if (currentMediaIndex < 0) {
+                currentMediaIndex = mediaSources.length - 1;
+            } else if (currentMediaIndex >= mediaSources.length) {
+                currentMediaIndex = 0;
+            }
+
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxVideo = document.getElementById('lightbox-video');
+            const lightboxVideoSource = document.getElementById('lightbox-video-source');
+            const media = mediaSources[currentMediaIndex];
+
+            if (media.type === 'image') {
+                lightboxImg.src = media.src;
+                lightboxImg.style.display = 'block';
+                lightboxVideo.style.display = 'none';
+                lightboxVideo.pause();
+            } else {
+                lightboxVideoSource.src = media.src;
+                lightboxVideo.load();
+                lightboxVideo.style.display = 'block';
+                lightboxImg.style.display = 'none';
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (event.key === 'Escape') {
+                    closeLightbox({ target: lightbox });
+                } else if (event.key === 'ArrowLeft') {
+                    changeMedia(-1, event);
+                } else if (event.key === 'ArrowRight') {
+                    changeMedia(1, event);
+                }
+            }
+        });
+
+        function checkAnswer(answer, button) {
+            if (answered) return;
+
+            const allButtons = document.querySelectorAll('.quiz-btn');
+            const instagramReveal = document.getElementById('instagram-reveal');
+            const feedbackMessage = document.getElementById('feedback-message');
+
+            if (answer === 'correct') {
+                button.classList.add('correct');
+                allButtons.forEach(btn => btn.disabled = true);
+                answered = true;
+                
+                setTimeout(() => {
+                    instagramReveal.classList.add('show');
+                }, 500);
+            } else {
+                button.classList.add('wrong');
+                feedbackMessage.textContent = "🤔 Hmm, try again!";
+                feedbackMessage.style.color = '#ffe66d';
+                
+                setTimeout(() => {
+                    button.classList.remove('wrong');
+                    feedbackMessage.textContent = '';
+                }, 1000);
+            }
+        }
+
+        // Add your Instagram link here
+        document.addEventListener('DOMContentLoaded', function() {
+            const instagramLink = document.getElementById('instagram-link');
+            // Replace this with your actual Instagram URL
+            instagramLink.href = 'https://www.instagram.com/_chicken_tendies';
+        });
+    </script>
+</body>
+
+</html>

@@ -15,7 +15,8 @@
 ### Experiments in Performance Analysis
 ~~~<img src="https://pbs.twimg.com/media/D84YfENX4AA8iGW?format=png" style="width:30%; height:30%;">~~~
 - [Matrix Multiplication: Cache-aware optimizations](/blog_pages/mat_mul)
-- [Profiling: From a Silicon Engineer perspective](/blog_pages/profiling)
+- [Profiling 1: From a Silicon Engineer perspective](/blog_pages/profiling)
+- [Profiling 2: Because one CPU is never enough](/blog_pages/cross_platform_profiling)
 
 ## 2021
 [A Harmonious code-creativity relationship](#a_harmonious_code-creativity_relationship)
