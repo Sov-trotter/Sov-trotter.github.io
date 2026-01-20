@@ -376,26 +376,33 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.95);
             animation: fadeIn 0.3s ease;
+            overflow: hidden;
         }
 
         .lightbox.active {
-            display: flex;
+            display: flex !important;
             align-items: center;
             justify-content: center;
         }
 
         .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 90vw;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
             object-fit: contain;
             border-radius: 10px;
             box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+            z-index: 1000;
         }
 
         .lightbox-video {
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 90vw;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
             border-radius: 10px;
+            z-index: 1000;
         }
 
         .lightbox-close {
@@ -668,6 +675,8 @@
     </div>
 
     <script>
+        console.log('Script starting to load...');
+        
         let answered = false;
         let currentMediaIndex = 0;
 
@@ -685,8 +694,12 @@
             { type: 'image', src: '/assets/img10.jpeg' },
             { type: 'image', src: '/assets/img5.jpeg' }
         ];
+        
+        console.log('Media sources loaded:', mediaSources.length);
 
         function openLightbox(index, event) {
+            console.log('🚀 openLightbox called with index:', index);
+            
             if (event) {
                 event.preventDefault();
                 event.stopPropagation();
@@ -698,22 +711,55 @@
             const lightboxVideo = document.getElementById('lightbox-video');
             const lightboxVideoSource = document.getElementById('lightbox-video-source');
 
+            if (!lightbox || !lightboxImg || !lightboxVideo) {
+                console.error('❌ Lightbox elements not found!');
+                return;
+            }
+
             const media = mediaSources[index];
+            console.log('Media to display:', media);
+
+            // Hide both first
+            lightboxImg.style.display = 'none';
+            lightboxVideo.style.display = 'none';
+            lightboxVideo.pause();
 
             if (media.type === 'image') {
+                console.log('Displaying image:', media.src);
                 lightboxImg.src = media.src;
                 lightboxImg.style.display = 'block';
-                lightboxVideo.style.display = 'none';
-                lightboxVideo.pause();
+                lightboxImg.style.visibility = 'visible';
+                lightboxImg.style.opacity = '1';
+                
+                // Debug image loading
+                lightboxImg.onload = function() {
+                    console.log('✅ Image loaded successfully:', media.src);
+                    console.log('Image dimensions:', lightboxImg.naturalWidth, 'x', lightboxImg.naturalHeight);
+                };
+                lightboxImg.onerror = function() {
+                    console.error('❌ Failed to load image:', media.src);
+                };
             } else {
+                console.log('Displaying video:', media.src);
                 lightboxVideoSource.src = media.src;
                 lightboxVideo.load();
                 lightboxVideo.style.display = 'block';
-                lightboxImg.style.display = 'none';
+                lightboxVideo.style.visibility = 'visible';
+                lightboxVideo.style.opacity = '1';
+                
+                // Debug video loading
+                lightboxVideo.onloadeddata = function() {
+                    console.log('✅ Video loaded successfully:', media.src);
+                };
+                lightboxVideo.onerror = function() {
+                    console.error('❌ Failed to load video:', media.src);
+                };
             }
 
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
+            console.log('✅ Lightbox opened, classList:', lightbox.classList.value);
+            console.log('Lightbox display:', window.getComputedStyle(lightbox).display);
         }
 
         function closeLightbox() {
@@ -739,16 +785,24 @@
             const lightboxVideoSource = document.getElementById('lightbox-video-source');
             const media = mediaSources[currentMediaIndex];
 
+            console.log('Changing to media index:', currentMediaIndex, media);
+
+            // Hide both first
+            lightboxImg.style.display = 'none';
+            lightboxVideo.style.display = 'none';
+            lightboxVideo.pause();
+
             if (media.type === 'image') {
                 lightboxImg.src = media.src;
                 lightboxImg.style.display = 'block';
-                lightboxVideo.style.display = 'none';
-                lightboxVideo.pause();
+                lightboxImg.style.visibility = 'visible';
+                lightboxImg.style.opacity = '1';
             } else {
                 lightboxVideoSource.src = media.src;
                 lightboxVideo.load();
                 lightboxVideo.style.display = 'block';
-                lightboxImg.style.display = 'none';
+                lightboxVideo.style.visibility = 'visible';
+                lightboxVideo.style.opacity = '1';
             }
         }
 
@@ -803,91 +857,165 @@
             }
         }
 
-        // Add your Instagram link here
-        document.addEventListener('DOMContentLoaded', function() {
-            const instagramLink = document.getElementById('instagram-link');
-            // Replace this with your actual Instagram URL
-            instagramLink.href = 'https://www.instagram.com/_chicken_tendies';
-
-            // Add event support for all clickable images and videos
-            const clickableElements = document.querySelectorAll('[data-lightbox]');
-            console.log('Found clickable elements:', clickableElements.length);
+        // Initialize function
+        function initializeApp() {
+            console.log('Initializing app...');
             
-            clickableElements.forEach((element, index) => {
-                const mediaIndex = parseInt(element.getAttribute('data-lightbox'));
-                console.log('Element', index, 'lightbox index:', mediaIndex);
+            try {
+                const instagramLink = document.getElementById('instagram-link');
+                if (instagramLink) {
+                    instagramLink.href = 'https://www.instagram.com/_chicken_tendies';
+                    console.log('Instagram link set');
+                }
+
+                // Add event support for all clickable images and videos
+                const clickableElements = document.querySelectorAll('[data-lightbox]');
+                console.log('Found clickable elements:', clickableElements.length);
                 
-                if (!isNaN(mediaIndex)) {
-                    // Use click event which works on both mobile and desktop
-                    element.addEventListener('click', function(e) {
-                        console.log('Element clicked, opening lightbox:', mediaIndex);
-                        e.preventDefault();
-                        e.stopPropagation();
-                        openLightbox(mediaIndex, e);
-                    });
+                clickableElements.forEach((element, index) => {
+                    const mediaIndex = parseInt(element.getAttribute('data-lightbox'));
+                    console.log('Setting up element', index, 'with lightbox index:', mediaIndex);
                     
-                    console.log('Event listener attached to element', index);
-                }
-            });
+                    if (!isNaN(mediaIndex)) {
+                        // Remove any existing listeners first
+                        element.style.cursor = 'pointer';
+                        
+                        // Use both click and touchend for maximum compatibility
+                        element.addEventListener('click', function(e) {
+                            console.log('CLICK - Element clicked, opening lightbox:', mediaIndex);
+                            e.preventDefault();
+                            e.stopPropagation();
+                            openLightbox(mediaIndex, e);
+                        }, false);
+                        
+                        element.addEventListener('touchstart', function(e) {
+                            console.log('TOUCHSTART - Element touch started:', mediaIndex);
+                        }, { passive: true });
+                        
+                        element.addEventListener('touchend', function(e) {
+                            console.log('TOUCHEND - Element touched, opening lightbox:', mediaIndex);
+                            e.preventDefault();
+                            e.stopPropagation();
+                            openLightbox(mediaIndex, e);
+                        }, { passive: false });
+                        
+                        console.log('✓ Event listeners attached to element', index);
+                    }
+                });
 
-            // Add event support for quiz buttons (works on both mobile and desktop)
-            const quizButtons = document.querySelectorAll('.quiz-btn');
-            console.log('Found quiz buttons:', quizButtons.length);
-            
-            quizButtons.forEach((button, index) => {
-                const answerType = button.getAttribute('data-answer');
-                console.log('Button', index, 'answer type:', answerType);
+                // Add event support for quiz buttons
+                const quizButtons = document.querySelectorAll('.quiz-btn');
+                console.log('Found quiz buttons:', quizButtons.length);
                 
-                if (answerType) {
-                    // Use click event which works better cross-platform
-                    button.addEventListener('click', function(e) {
-                        console.log('Button clicked:', answerType);
-                        e.preventDefault();
-                        e.stopPropagation();
-                        checkAnswer(answerType, button);
-                    });
+                quizButtons.forEach((button, index) => {
+                    const answerType = button.getAttribute('data-answer');
+                    console.log('Setting up button', index, 'with answer type:', answerType);
                     
-                    console.log('Event listeners attached to button', index);
+                    if (answerType) {
+                        button.style.cursor = 'pointer';
+                        
+                        // Use both click and touchend
+                        button.addEventListener('click', function(e) {
+                            console.log('CLICK - Button clicked:', answerType);
+                            e.preventDefault();
+                            e.stopPropagation();
+                            checkAnswer(answerType, button);
+                        }, false);
+                        
+                        button.addEventListener('touchstart', function(e) {
+                            console.log('TOUCHSTART - Button touch started:', answerType);
+                        }, { passive: true });
+                        
+                        button.addEventListener('touchend', function(e) {
+                            console.log('TOUCHEND - Button touched:', answerType);
+                            e.preventDefault();
+                            e.stopPropagation();
+                            checkAnswer(answerType, button);
+                        }, { passive: false });
+                        
+                        console.log('✓ Event listeners attached to button', index);
+                    }
+                });
+
+                // Add event listeners for lightbox controls
+                const lightbox = document.getElementById('lightbox');
+                const closeBtn = document.getElementById('lightbox-close-btn');
+                const prevBtn = document.getElementById('lightbox-prev-btn');
+                const nextBtn = document.getElementById('lightbox-next-btn');
+
+                if (lightbox && closeBtn && prevBtn && nextBtn) {
+                    // Close lightbox when clicking on background
+                    lightbox.addEventListener('click', function(e) {
+                        if (e.target === lightbox) {
+                            console.log('Lightbox background clicked');
+                            closeLightbox();
+                        }
+                    });
+
+                    // Close button
+                    closeBtn.addEventListener('click', function(e) {
+                        console.log('Close button clicked');
+                        e.stopPropagation();
+                        closeLightbox();
+                    });
+
+                    // Previous button
+                    prevBtn.addEventListener('click', function(e) {
+                        console.log('Previous button clicked');
+                        e.stopPropagation();
+                        changeMedia(-1);
+                    });
+
+                    // Next button
+                    nextBtn.addEventListener('click', function(e) {
+                        console.log('Next button clicked');
+                        e.stopPropagation();
+                        changeMedia(1);
+                    });
+
+                    console.log('✓ Lightbox controls initialized');
                 }
-            });
 
-            // Add event listeners for lightbox controls
-            const lightbox = document.getElementById('lightbox');
-            const closeBtn = document.getElementById('lightbox-close-btn');
-            const prevBtn = document.getElementById('lightbox-prev-btn');
-            const nextBtn = document.getElementById('lightbox-next-btn');
+                console.log('✅ All event listeners initialized successfully');
+            } catch (error) {
+                console.error('❌ Error during initialization:', error);
+            }
+        }
 
-            // Close lightbox when clicking on background
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === lightbox) {
-                    console.log('Lightbox background clicked');
-                    closeLightbox();
-                }
-            });
+        // Run initialization when DOM is ready
+        if (document.readyState === 'loading') {
+            console.log('DOM still loading, waiting...');
+            document.addEventListener('DOMContentLoaded', initializeApp);
+        } else {
+            console.log('DOM already loaded, initializing immediately');
+            initializeApp();
+        }
 
-            // Close button
-            closeBtn.addEventListener('click', function(e) {
-                console.log('Close button clicked');
-                e.stopPropagation();
-                closeLightbox();
-            });
+        // Expose test functions globally for debugging
+        window.testLightbox = function() {
+            console.log('🧪 Testing lightbox with first image...');
+            openLightbox(0);
+        };
 
-            // Previous button
-            prevBtn.addEventListener('click', function(e) {
-                console.log('Previous button clicked');
-                e.stopPropagation();
-                changeMedia(-1);
-            });
+        window.testQuiz = function() {
+            console.log('🧪 Testing quiz answer...');
+            const btn = document.querySelector('.quiz-btn');
+            if (btn) {
+                checkAnswer('correct', btn);
+            }
+        };
 
-            // Next button
-            nextBtn.addEventListener('click', function(e) {
-                console.log('Next button clicked');
-                e.stopPropagation();
-                changeMedia(1);
-            });
+        console.log('💡 Test commands available:');
+        console.log('  testLightbox() - Open first image');
+        console.log('  testQuiz() - Test quiz functionality');
 
-            console.log('All event listeners initialized');
-        });
+        // Add a small indicator that JS is loaded (for debugging)
+        setTimeout(function() {
+            const header = document.querySelector('.header');
+            if (header && console) {
+                console.log('✅ Page fully loaded and interactive');
+            }
+        }, 100);
     </script>
 </body>
 
