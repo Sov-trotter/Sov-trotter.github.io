@@ -402,7 +402,15 @@ td.arrow-down::before {
     margin-right: 0.3em;
 }
 
-/* 8. Percentage badge style */
+/* Compact math for calculation-heavy sections */
+.math-compact .katex {
+    font-size: 0.82em !important;
+}
+
+.math-compact .katex-display {
+    margin: 0.4em 0;
+}
+
 td.badge {
     position: relative;
 }
