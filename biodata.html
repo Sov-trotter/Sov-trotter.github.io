@@ -596,18 +596,18 @@
             'use strict';
 
             var media = [
-                { type: 'image', src: '/assets/img9.jpeg' },  // 0  (portrait)
-                { type: 'image', src: '/assets/img3.jpeg' },  // 1
-                { type: 'image', src: '/assets/img15.jpeg' }, // 2
-                { type: 'image', src: '/assets/img13.jpeg' }, // 3
-                { type: 'image', src: '/assets/img11.jpeg' }, // 4
-                { type: 'image', src: '/assets/img2.jpeg' },  // 5
-                { type: 'image', src: '/assets/img_1.jpg' },  // 6
-                { type: 'image', src: '/assets/img14.jpeg' }, // 7
-                { type: 'image', src: '/assets/img16.jpeg' }, // 8
-                { type: 'video', src: '/assets/vid2.mp4' },   // 9
-                { type: 'image', src: '/assets/img10.jpeg' }, // 10
-                { type: 'image', src: '/assets/img5.jpeg' }   // 11
+                { type: 'image', src: '/assets/img9.jpeg' },
+                { type: 'image', src: '/assets/img3.jpeg' },
+                { type: 'image', src: '/assets/img15.jpeg' },
+                { type: 'image', src: '/assets/img13.jpeg' },
+                { type: 'image', src: '/assets/img11.jpeg' },
+                { type: 'image', src: '/assets/img2.jpeg' },
+                { type: 'image', src: '/assets/img_1.jpg' },
+                { type: 'image', src: '/assets/img14.jpeg' },
+                { type: 'image', src: '/assets/img16.jpeg' },
+                { type: 'video', src: '/assets/vid2.mp4' },
+                { type: 'image', src: '/assets/img10.jpeg' },
+                { type: 'image', src: '/assets/img5.jpeg' }
             ];
 
             var lightbox = document.getElementById('lightbox');
@@ -644,8 +644,8 @@
                 document.body.style.overflow = '';
             }
 
-            // Cross-device tap: fires once per genuine tap/click, ignores scroll drags,
-            // and suppresses the ghost click that follows a touchend on mobile.
+            /* Cross-device tap: fires once per genuine tap/click, ignores scroll
+               drags, and suppresses the ghost click that follows touchend on mobile. */
             function onTap(el, handler) {
                 var startX = 0, startY = 0, moved = false, suppress = false;
 
@@ -664,19 +664,18 @@
 
                 el.addEventListener('touchend', function (e) {
                     if (moved) return;
-                    e.preventDefault();          // stop the synthesized click
+                    e.preventDefault();
                     suppress = true;
                     setTimeout(function () { suppress = false; }, 500);
                     handler(e);
                 });
 
                 el.addEventListener('click', function (e) {
-                    if (suppress) return;        // already handled via touchend
+                    if (suppress) return;
                     handler(e);
                 });
             }
 
-            // Wire every image/video tile.
             var triggers = document.querySelectorAll('[data-lightbox]');
             for (var i = 0; i < triggers.length; i++) {
                 (function (el) {
@@ -690,8 +689,8 @@
             onTap(document.getElementById('lb-prev'), function () { render(current - 1); });
             onTap(document.getElementById('lb-next'), function () { render(current + 1); });
 
-            // Close on backdrop tap only — don't preventDefault on taps that bubble
-            // up from the video controls, or scrubbing/play would break on mobile.
+            /* Close on backdrop tap only. Don't preventDefault on taps bubbling up
+               from the video controls, or scrubbing/play would break on mobile. */
             lightbox.addEventListener('click', function (e) {
                 if (e.target === lightbox) close();
             });
@@ -706,7 +705,7 @@
                 else if (e.key === 'ArrowRight') render(current + 1);
             });
 
-            // Quiz
+            /* Quiz */
             var answered = false;
             var feedback = document.getElementById('feedback');
             var reveal = document.getElementById('reveal');
