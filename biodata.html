@@ -643,20 +643,59 @@
                 document.body.style.overflow = '';
             }
 
-            // Event delegation: any element (or child) with [data-lightbox] opens the lightbox.
-            document.addEventListener('click', function (e) {
-                var trigger = e.target.closest('[data-lightbox]');
-                if (trigger) {
-                    e.preventDefault();
-                    open(parseInt(trigger.getAttribute('data-lightbox'), 10) || 0);
-                }
-            });
+            // Cross-device tap: fires once per genuine tap/click, ignores scroll drags,
+            // and suppresses the ghost click that follows a touchend on mobile.
+            function onTap(el, handler) {
+                var startX = 0, startY = 0, moved = false, suppress = false;
 
-            document.getElementById('lb-close').addEventListener('click', close);
-            document.getElementById('lb-prev').addEventListener('click', function () { render(current - 1); });
-            document.getElementById('lb-next').addEventListener('click', function () { render(current + 1); });
+                el.addEventListener('touchstart', function (e) {
+                    moved = false;
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                }, { passive: true });
+
+                el.addEventListener('touchmove', function (e) {
+                    if (Math.abs(e.touches[0].clientX - startX) > 10 ||
+                        Math.abs(e.touches[0].clientY - startY) > 10) {
+                        moved = true;
+                    }
+                }, { passive: true });
+
+                el.addEventListener('touchend', function (e) {
+                    if (moved) return;
+                    e.preventDefault();          // stop the synthesized click
+                    suppress = true;
+                    setTimeout(function () { suppress = false; }, 500);
+                    handler(e);
+                });
+
+                el.addEventListener('click', function (e) {
+                    if (suppress) return;        // already handled via touchend
+                    handler(e);
+                });
+            }
+
+            // Wire every image/video tile.
+            var triggers = document.querySelectorAll('[data-lightbox]');
+            for (var i = 0; i < triggers.length; i++) {
+                (function (el) {
+                    onTap(el, function () {
+                        open(parseInt(el.getAttribute('data-lightbox'), 10) || 0);
+                    });
+                })(triggers[i]);
+            }
+
+            onTap(document.getElementById('lb-close'), close);
+            onTap(document.getElementById('lb-prev'), function () { render(current - 1); });
+            onTap(document.getElementById('lb-next'), function () { render(current + 1); });
+
+            // Close on backdrop tap only — don't preventDefault on taps that bubble
+            // up from the video controls, or scrubbing/play would break on mobile.
             lightbox.addEventListener('click', function (e) {
                 if (e.target === lightbox) close();
+            });
+            lightbox.addEventListener('touchend', function (e) {
+                if (e.target === lightbox) { e.preventDefault(); close(); }
             });
 
             document.addEventListener('keydown', function (e) {
@@ -673,7 +712,7 @@
             var buttons = document.querySelectorAll('.quiz-btn');
 
             buttons.forEach(function (btn) {
-                btn.addEventListener('click', function () {
+                onTap(btn, function () {
                     if (answered) return;
                     if (btn.getAttribute('data-answer') === 'correct') {
                         answered = true;
